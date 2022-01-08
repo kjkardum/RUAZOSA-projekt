@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs.kotlin"
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "hr.fer.ruazosa.kviz2022"
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$androidXcoreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$archLifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$archLifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$archLifecycleVersion")
+    kapt("androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion")
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.preference:preference-ktx:$preferencesVersion"
+
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+    kaptTest "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+}
+
+kapt {
+    correctErrorTypes true
+}
