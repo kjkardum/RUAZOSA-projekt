@@ -97,8 +97,8 @@ namespace QuizApi.Services
                     await _userManager.AddToRoleAsync(user, "member");
                     var verificationUri = await SendVerificationEmail(user, origin);
                     //TODO: Attach Email Service here and configure it via appsettings
-                    await _emailService.SendAsync(new EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
-                    return new Response<string>(user.Id.ToString(), message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+                    await _emailService.SendAsync(new EmailRequest() { From = "ruazosa@kjkardum.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
+                    return new Response<string>(user.Id.ToString(), message: $"User Registered. Please confirm your account by visiting URL in email sent to {user.Email}");
                 }
                 else
                 {

@@ -10,7 +10,9 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using QuizApi.Data;
 using QuizApi.Entities;
+using QuizApi.Helpers;
 using QuizApi.Interfaces;
+using QuizApi.Repositories;
 using QuizApi.Services;
 using QuizApi.Settings;
 using QuizApi.Wrappers;
@@ -25,11 +27,14 @@ namespace QuizApi.Extensions
             services.Configure<JWTSettings>(config.GetSection("JWTSettings"));
             services.AddTransient<IDateTimeService, DateTimeService>();
             services.AddTransient<IEmailService, EmailService>();
-            services.AddTransient<IAccountService, AccountService>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseMySQL(config.GetConnectionString("DefaultConnection"));
             });
+            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddScoped<FollowersService>();
             return services;
         }
     }
