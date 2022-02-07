@@ -17,9 +17,23 @@ namespace QuizApi.Controllers
 
         [HttpPost, Route("AddFollower/{followerId}")]
         [Authorize]
-        public async Task<IActionResult> SearchAction(int followerId)
+        public async Task<IActionResult> AddFollower(int followerId)
         {
             return Ok(await _service.FollowUserByIdAsync(User.GetUserId(), followerId));
+        }
+        
+        [HttpGet, Route("GetFollowedUsers")]
+        [Authorize]
+        public async Task<IActionResult> GetFollowedUsers()
+        {
+            return Ok(await _service.GetFollowedUsersAsync(User.GetUserId()));
+        }
+        
+        [HttpGet, Route("FollowSuggestions")]
+        [Authorize]
+        public async Task<IActionResult> FollowSuggestions()
+        {
+            return Ok(await _service.SuggestUsersToFollowAsync(User.GetUserId()));
         }
     }
 }

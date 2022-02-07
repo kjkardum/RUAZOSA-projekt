@@ -33,8 +33,10 @@ namespace QuizApi.Extensions
                 options.UseMySQL(config.GetConnectionString("DefaultConnection"));
             });
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<IJRepository, JRepository>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddScoped<FollowersService>();
+            services.AddScoped<GameService>();
             return services;
         }
     }

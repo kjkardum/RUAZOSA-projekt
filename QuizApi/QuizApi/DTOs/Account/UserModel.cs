@@ -6,8 +6,8 @@ namespace AssembleIt.Application.DTOs.Account
     public class UserModel
     {
         public int Id { get; set; }
+        public int TotalGamesPoints { get; set; }
         public List<FollowersModel> Following { get; set; }
-        public List<FollowersModel> FollowedBy { get; set; }
         //public List<UserGame> Games { get; set; }
     }
 }
