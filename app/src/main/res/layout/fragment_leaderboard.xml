@@ -1,63 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#D3D3D3">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="hr.fer.ruazosa.kviz2022.leaderboard.LeaderboardViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#D3D3D3">
+        tools:context=".leaderboard.LeaderboardFragment">
 
+        <!-- TODO: Update blank fragment layout -->
         <TextView
-            android:textColor="#555555"
-            android:id="@+id/textView6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Leaderboard"
-            android:textAlignment="textStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="48sp" />
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment" />
 
-        <TextView
-            android:textColor="#555555"
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="{{username}}"
-            android:textSize="34sp" />
-
-        <TextView
-            android:textColor="#555555"
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="#{{position}}"
-            android:textSize="34sp" />
-        
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:background="#555555"/>
-
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:textColor="#555555"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="#{{users}}"/>
-        </LinearLayout>
-    </LinearLayout>
-
+    </FrameLayout>
 </layout>

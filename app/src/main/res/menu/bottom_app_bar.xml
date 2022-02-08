@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/leaderboard"
-        android:icon="@drawable/ic_leaderboard"
-        android:title="LEADERBOARD"
-        />
+    <item android:id="@+id/homepageFragment"
+        android:title="@string/home_title"
+        android:icon="@drawable/ic_home" />
+
+    <item android:id="@+id/placeholder"
+        android:title="" />
+
+    <item android:id="@+id/leaderboardFragment"
+        android:title="@string/leaderboard_title"
+        android:icon="@drawable/ic_leaderboard" />
 </menu>
