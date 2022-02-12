@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -20,13 +21,12 @@
             counterText="@{viewModel.demoCounter}"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/temp_button"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:onClick="@{()->viewModel.navigate()}"
-            android:text="Click to log" />
+            app:srcCompat="@drawable/ic_exit"
+            android:background="@drawable/ic_logout"/>
 
     </FrameLayout>
 </layout>
