@@ -22,7 +22,6 @@ class OnboardingActivity : AppCompatActivity() {
             replace(R.id.logFrag, LoginFragment())
             commit()
         }
-
     }
 
     fun onFinishOnboarding() {

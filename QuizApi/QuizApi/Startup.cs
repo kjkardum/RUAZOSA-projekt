@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using QuizApi.Extensions;
 using QuizApi.Middleware;
+using Microsoft.EntityFrameworkCore;
 
 namespace QuizApi
 {
