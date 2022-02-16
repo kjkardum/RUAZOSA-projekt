@@ -61,8 +61,7 @@ object Network {
         .client(getUnsafeOkHttpClient())
         .build()
 
-    //val gameService = retrofit.create(GameService::class.java)
-
+    val gameService = retrofit.create(GameService::class.java)
     val accountService = retrofit.create(AccountService::class.java)
 
 }

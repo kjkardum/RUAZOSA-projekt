@@ -8,16 +8,47 @@
             type="hr.fer.ruazosa.kviz2022.leaderboard.LeaderboardViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".leaderboard.LeaderboardFragment">
-
-        <!-- TODO: Update blank fragment layout -->
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Leaderboard"
+            android:textSize="50sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="50dp"
+            android:autoSizeMaxTextSize="100dp"/>
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/LeaderboardUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="{{USERNAME}}"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/CurrentPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Current position is {{POSITION}}"
+            android:textSize="20sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/md_theme_dark_error"
+            android:layout_margin="5dp"/>
+
+        <ListView
+            android:id="@+id/LeaderboardList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 </layout>

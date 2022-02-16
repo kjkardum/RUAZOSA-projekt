@@ -9,10 +9,21 @@
             type="hr.fer.ruazosa.kviz2022.homepage.HomepageViewModel" />
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".homepage.HomepageFragment">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <TextView
+            android:id="@+id/HelloUser"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Hello User"
+            android:textSize="50sp"/>
 
-    </FrameLayout>
+        <View
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+    </LinearLayout>
 </layout>

@@ -49,7 +49,7 @@ namespace QuizApi.Services
         public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
-            /* if (user == null)
+            if (user == null)
             {
                 throw new ApiException($"No Accounts Registered with {request.Email}.");
             }
@@ -61,7 +61,7 @@ namespace QuizApi.Services
             if (!user.EmailConfirmed)
             {
                 throw new ApiException($"Account Not Confirmed for '{request.Email}'.");
-            } */
+            }
             JwtSecurityToken jwtSecurityToken = await GenerateJWToken(user);
             AuthenticationResponse response = new AuthenticationResponse();
             response.Id = user.Id;
@@ -78,7 +78,7 @@ namespace QuizApi.Services
 
         public async Task<Response<string>> RegisterAsync(RegisterRequest request, string origin)
         {
-            /* var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
+            var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
             if (userWithSameUserName != null)
             {
                 throw new ApiException($"Username '{request.UserName}' is already taken.");
@@ -108,8 +108,7 @@ namespace QuizApi.Services
             else
             {
                 throw new ApiException($"Email {request.Email } is already registered.");
-            } */
-            return new Response<string>("USER", message: $"User Registered. Please confirm your account by visiting URL in email sent to");
+            }
         }
 
         private async Task<JwtSecurityToken> GenerateJWToken(AppUser user)

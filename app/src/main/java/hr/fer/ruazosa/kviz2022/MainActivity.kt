@@ -3,6 +3,7 @@ package hr.fer.ruazosa.kviz2022
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -25,5 +26,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    fun enterLobby(view: View) {
+        val intent = Intent(this@MainActivity, GameActivity::class.java)
+        startActivity(intent)
     }
 }
