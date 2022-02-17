@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 
 
 class LoginViewModel : ViewModel(){
-
     val Userdata = object {
         val email = ""
         val password = ""

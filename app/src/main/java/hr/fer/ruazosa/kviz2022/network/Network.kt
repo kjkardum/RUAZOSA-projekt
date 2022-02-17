@@ -58,7 +58,7 @@ object Network {
         .baseUrl("https://localhost:5001/api/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .client(getUnsafeOkHttpClient())
+        .client(getUnsafeOkHttpClient()) /* Avoid SSL CA certificates */
         .build()
 
     val gameService = retrofit.create(GameService::class.java)

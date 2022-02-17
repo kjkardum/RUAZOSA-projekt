@@ -30,6 +30,7 @@
             </TextView>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RegisterUsernameWrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -43,6 +44,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RegisterEmailWrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -52,15 +54,18 @@
                     android:id="@+id/RegisterEmail"
                     android:layout_width="350dp"
                     android:layout_height="50dp"
-                    android:ems="10"></com.google.android.material.textfield.TextInputEditText>
+                    android:ems="10"
+                    ></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RegisterPasswordWrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Password"
                 app:passwordToggleEnabled="true">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/RegisterPassword"
                     android:layout_width="350dp"
@@ -70,6 +75,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RegisterRepeatPasswordWrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

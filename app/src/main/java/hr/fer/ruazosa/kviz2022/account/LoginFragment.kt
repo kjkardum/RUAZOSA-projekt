@@ -1,6 +1,8 @@
 package hr.fer.ruazosa.kviz2022.account
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +11,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.forms.*
-import hr.fer.ruazosa.kviz2022.forms.StandardResponseForm
 import hr.fer.ruazosa.kviz2022.network.Network
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,27 +50,33 @@ class LoginFragment : Fragment(R.layout.fragment_login){
     }
 
     private fun makeLogin(mail: String, pass: String){
+        Log.d("INFO", "Making form")
         val logForm = LoginForm(mail, pass)
-        val req: Call<StandardResponseForm> = Network.accountService.authenticateAccount(logForm)
+        Log.d("INFO", "Sending request")
+        val req: Call<ResponseForm> = Network.accountService.authenticateAccount(logForm)
         req.enqueue(
-            object : Callback<StandardResponseForm> {
+            object : Callback<ResponseForm> {
                 override fun onResponse(
-                    call: Call<StandardResponseForm>,
-                    response: Response<StandardResponseForm>
+                    call: Call<ResponseForm>,
+                    response: Response<ResponseForm>
                 ) {
-                    (activity as OnboardingActivity?)?.onFinishOnboarding()
-                    val newUser = response.body()
-                    val code = response.code()
-                    if (code == 200){
-                        if (newUser != null) {
-                            Toast.makeText(context, newUser.toString(), Toast.LENGTH_SHORT).show()
-                            (activity as OnboardingActivity?)?.onFinishOnboarding()
+                    Log.d("INFO", "Success")
+                    if (!response.isSuccessful){
+                        val objError = JSONObject(response.errorBody()!!.string())
+                        //Log.d("INFO", objError.toString())
+                    } else {
+                        val newUser = response.body()
+                        val code = response.code()
+                        if (code == 200) {
+                            if (newUser != null) {
+                                Toast.makeText(context, newUser.toString(), Toast.LENGTH_SHORT).show()
+                                (activity as OnboardingActivity?)?.onFinishOnboarding()
+                            }
                         }
                     }
                 }
-
-                override fun onFailure(call: Call<StandardResponseForm>, t: Throwable) {
-                    (activity as OnboardingActivity?)?.onFinishOnboarding()
+                override fun onFailure(call: Call<ResponseForm>, t: Throwable) {
+                    Log.d("FAILED", t.toString())
                     Toast.makeText(context, "Failed to Register", Toast.LENGTH_SHORT).show()
                 }
             }

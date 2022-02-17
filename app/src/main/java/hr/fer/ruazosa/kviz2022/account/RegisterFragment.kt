@@ -1,5 +1,8 @@
 package hr.fer.ruazosa.kviz2022.account
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,13 +12,18 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
+import com.google.android.material.textfield.TextInputEditText
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
-import hr.fer.ruazosa.kviz2022.forms.*
-import hr.fer.ruazosa.kviz2022.network.*
+import hr.fer.ruazosa.kviz2022.forms.RegisterForm
+import hr.fer.ruazosa.kviz2022.forms.ResponseForm
+import hr.fer.ruazosa.kviz2022.network.Network
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
@@ -31,32 +39,54 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val pass: String = view.findViewById<TextView?>(R.id.RegisterPassword).text.toString()
         val rpass: String = view.findViewById<TextView?>(R.id.RegisterRepeatPassword).text.toString()
         btn.setOnClickListener {
-            makeRegistration(mail, usr, pass, rpass)
+            makeRegistration(mail, usr, pass, rpass, view)
         }
         return view
     }
 
-    private fun makeRegistration(mail : String, usr: String, pass: String, rpass: String){
+    private fun makeRegistration(mail : String, usr: String, pass: String, rpass: String, view: View){
+        Log.d("INFO", "Making form")
         val regform = RegisterForm(mail, usr, pass, rpass)
-        val req: Call<StandardResponseForm> = Network.accountService.registerNewAccount(regform)
+        Log.d("INFO", "Sending request")
+        val req: Call<ResponseForm> = Network.accountService.registerNewAccount(regform)
         req.enqueue(
-            object : Callback<StandardResponseForm> {
+            object : Callback<ResponseForm> {
                 override fun onResponse(
-                    call: Call<StandardResponseForm>,
-                    response: Response<StandardResponseForm>
+                    call: Call<ResponseForm>,
+                    response: Response<ResponseForm>
                 ) {
-                    val newUser = response.body()
-                    val code = response.code()
-                    if (code == 200){
-                        if (newUser != null) {
-                            Toast.makeText(context, newUser.toString(), Toast.LENGTH_SHORT).show()
+                    Log.d("SUCCESS", "Server responded")
+                    if (!response.isSuccessful){
+                        val objError = JSONObject(response.errorBody()!!.string()).getJSONObject("errors")
+                        when {
+                            objError.getString("Email") != null -> {
+                                view.findViewById<TextInputEditText?>(R.id.RegisterEmail).background = ColorDrawable(resources.getColor(R.color.error))
+                            }
+                            objError.getString("Password") != null -> {
+                                view.findViewById<TextInputEditText?>(R.id.RegisterPassword).background = ColorDrawable(resources.getColor(R.color.error))
+                            }
+                            objError.getString("UserName") != null -> {
+                                view.findViewById<TextInputEditText?>(R.id.RegisterUsername).background = ColorDrawable(resources.getColor(R.color.error))
+                            }
+                            objError.getString("ConfirmPassword") != null -> {
+                                view.findViewById<TextInputEditText?>(R.id.RegisterRepeatPassword).background = ColorDrawable(resources.getColor(R.color.error))
+                            }
+                        }
+                    } else {
+                        if (response.code() == 200) {
+                            val pref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
+                            val editor: SharedPreferences.Editor = pref.edit()
+                            editor.putString("Username", usr)
+                            editor.commit()
+                            editor.putString("Email", mail)
+                            editor.commit()
+                            Toast.makeText(context, "welcome", Toast.LENGTH_SHORT).show()
                             (activity as OnboardingActivity?)?.onFinishOnboarding()
                         }
                     }
                 }
-                override fun onFailure(call: Call<StandardResponseForm>, t: Throwable) {
-                    Log.d("FAILED", t.toString())
-                    Toast.makeText(context, "Failed to Register", Toast.LENGTH_SHORT).show()
+                override fun onFailure(call: Call<ResponseForm>, t: Throwable) {
+                    Toast.makeText(context, "Failed to Register please try again", Toast.LENGTH_SHORT).show()
                 }
             }
         )

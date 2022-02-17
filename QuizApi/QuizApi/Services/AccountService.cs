@@ -51,7 +51,7 @@ namespace QuizApi.Services
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
             {
-                throw new ApiException($"No Accounts Registered with {request.Email}.");
+                throw new ApiException($"TODO");
             }
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
             if (!result.Succeeded)
@@ -92,11 +92,13 @@ namespace QuizApi.Services
             if (userWithSameEmail == null)
             {
                 var result = await _userManager.CreateAsync(user, request.Password);
+                Console.WriteLine(result.ToString());
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "member");
                     var verificationUri = await SendVerificationEmail(user, origin);
                     //TODO: Attach Email Service here and configure it via appsettings
+                    //Currently configured to fake SMTP account with STARTTLS
                     await _emailService.SendAsync(new EmailRequest() { From = "ruazosa@kjkardum.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
                     return new Response<string>(user.Id.ToString(), message: $"User Registered. Please confirm your account by visiting URL in email sent to {user.Email}");
                 }
