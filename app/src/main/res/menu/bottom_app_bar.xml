@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/homepageFragment"
+    <item
+        android:id="@+id/homepageFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
         android:title="@string/home_title"
-        android:icon="@drawable/ic_home" />
+        android:visible="true" />
 
-    <item android:id="@+id/placeholder"
-        android:title="" />
+    <item
+        android:id="@+id/placeholder"
+        android:enabled="false"
+        android:title=""
+        android:visible="true" />
 
-    <item android:id="@+id/leaderboardFragment"
+    <item
+        android:id="@+id/leaderboardFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_leaderboard"
         android:title="@string/leaderboard_title"
-        android:icon="@drawable/ic_leaderboard" />
+        android:visible="true" />
 </menu>
