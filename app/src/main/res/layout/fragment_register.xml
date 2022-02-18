@@ -22,11 +22,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Register new account"
+                android:text="@string/register_new_account"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="32dp">
-
             </TextView>
 
             <com.google.android.material.textfield.TextInputLayout

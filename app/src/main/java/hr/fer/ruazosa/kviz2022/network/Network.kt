@@ -31,10 +31,8 @@ object Network {
                 }
             )
 
-            // Install the all-trusting trust manager
             val sslContext: SSLContext = SSLContext.getInstance("SSL")
             sslContext.init(null, trustAllCerts, SecureRandom())
-            // Create an ssl socket factory with our all-trusting manager
             val sslSocketFactory: SSLSocketFactory = sslContext.getSocketFactory()
             val builder = OkHttpClient.Builder()
             builder.sslSocketFactory(sslSocketFactory)

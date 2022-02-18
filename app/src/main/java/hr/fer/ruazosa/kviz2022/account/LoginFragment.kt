@@ -1,6 +1,5 @@
 package hr.fer.ruazosa.kviz2022.account
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +10,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
-import hr.fer.ruazosa.kviz2022.forms.*
+import hr.fer.ruazosa.kviz2022.network.DTOs.*
 import hr.fer.ruazosa.kviz2022.network.Network
 import org.json.JSONObject
 import retrofit2.Call
@@ -51,14 +49,14 @@ class LoginFragment : Fragment(R.layout.fragment_login){
 
     private fun makeLogin(mail: String, pass: String){
         Log.d("INFO", "Making form")
-        val logForm = LoginForm(mail, pass)
+        val logForm = LoginDTO(mail, pass)
         Log.d("INFO", "Sending request")
-        val req: Call<ResponseForm> = Network.accountService.authenticateAccount(logForm)
+        val req: Call<ResponseDTO> = Network.accountService.authenticateAccount(logForm)
         req.enqueue(
-            object : Callback<ResponseForm> {
+            object : Callback<ResponseDTO> {
                 override fun onResponse(
-                    call: Call<ResponseForm>,
-                    response: Response<ResponseForm>
+                    call: Call<ResponseDTO>,
+                    response: Response<ResponseDTO>
                 ) {
                     Log.d("INFO", "Success")
                     if (!response.isSuccessful){
@@ -75,7 +73,7 @@ class LoginFragment : Fragment(R.layout.fragment_login){
                         }
                     }
                 }
-                override fun onFailure(call: Call<ResponseForm>, t: Throwable) {
+                override fun onFailure(call: Call<ResponseDTO>, t: Throwable) {
                     Log.d("FAILED", t.toString())
                     Toast.makeText(context, "Failed to Register", Toast.LENGTH_SHORT).show()
                 }

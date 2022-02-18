@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigaton_game"
+    app:startDestination="@id/gameEndFragment">
+
+    <fragment
+        android:id="@+id/gameEndFragment"
+        android:name="hr.fer.ruazosa.kviz2022.game.GameEndFragment"
+        android:label="GameEndFragment"
+        tools:layout="@layout/fragment_game_end"/>
+    <activity
+        android:id="@+id/gameActivity"
+        android:name="hr.fer.ruazosa.kviz2022.GameActivity"
+        android:label="GameActivity" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="hr.fer.ruazosa.kviz2022.game.QuestionFragment"
+        android:label="QuestionFragment"
+        tools:layout="@layout/fragment_question">
+        <action
+            android:id="@+id/action_questionFragment_self"
+            app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_questionFragment_to_gameEndFragment"
+            app:destination="@id/gameEndFragment" />
+        <action
+            android:id="@+id/action_questionFragment_to_gameActivity"
+            app:destination="@id/gameActivity" />
+    </fragment>
+</navigation>
