@@ -46,7 +46,7 @@
             android:background="@color/md_theme_dark_error"
             android:layout_margin="5dp"/>
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/LeaderboardList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

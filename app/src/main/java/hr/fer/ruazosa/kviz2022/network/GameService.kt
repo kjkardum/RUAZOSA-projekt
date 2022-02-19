@@ -16,8 +16,11 @@ interface GameService {
     fun getGameLeaderboard(@Path(value = "game_id", encoded = true) gameId: Int): Deferred<GameLeaderboardResponseDTO>
 
     @POST("Game/Start")
-    fun startGame(@Body start: GameStartDTO): Call<ResponseDTO>
+    fun startGame(@Body start: GameStartDTO): Deferred<ResponseDTO>
 
     @GET("Game/NextQuestion/{gameId}")
-    fun getNextQuestion(@Path(value = "game_id", encoded = true) gameId: Int)
+    fun getNextQuestion(@Path(value = "gameId", encoded = true) gameId: Int): Deferred<ResponseDTO>
+
+    @POST("Game/AnswerQuestion/{gameId}")
+    fun answerQuestion(@Path(value = "gameId", encoded = true) gameId: Int): Call<QuestionDTO>
 }

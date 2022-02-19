@@ -11,6 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import hr.fer.ruazosa.kviz2022.GameActivity
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
+import kotlinx.android.synthetic.main.fragment_question.*
 
 class QuestionFragment : Fragment(R.layout.fragment_question) {
     override fun onCreateView(
@@ -28,6 +29,7 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
     }
 
     private fun checkQuestion(answer:String){
-        (activity as GameActivity?)?.gotoGameEnd()
+        CountdownTimer
+
     }
 }

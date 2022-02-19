@@ -8,22 +8,42 @@
             name="viewModel"
             type="hr.fer.ruazosa.kviz2022.homepage.HomepageViewModel" />
     </data>
-
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
+
         <TextView
             android:id="@+id/HelloUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello {{USER}}"
-            android:textSize="50sp"/>
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/HomepageProfile"/>
 
         <View
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            />
+            android:id="@+id/HomepageProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/HelloUser"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AchievementsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </layout>

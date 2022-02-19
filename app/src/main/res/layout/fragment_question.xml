@@ -19,6 +19,13 @@
         android:text="5:00"
         android:textSize="20sp"/>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progress="50">
+
+    </ProgressBar>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

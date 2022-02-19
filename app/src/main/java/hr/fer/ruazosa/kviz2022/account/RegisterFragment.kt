@@ -19,6 +19,9 @@ import hr.fer.ruazosa.kviz2022.database.entity.User
 import hr.fer.ruazosa.kviz2022.network.DTOs.RegisterDTO
 import hr.fer.ruazosa.kviz2022.network.DTOs.ResponseDTO
 import hr.fer.ruazosa.kviz2022.network.Network
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,10 +34,12 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private lateinit var hUsrViewModel: UserViewModel
 
+    private val ref = this
     private fun addToDatabase(user: User){
-        Thread{ Runnable {
+        CoroutineScope(Dispatchers.IO).launch() {
+            hUsrViewModel = ViewModelProvider(ref)[UserViewModel::class.java]
             hUsrViewModel.addUser(user)
-        }}.start()
+        }
     }
 
     override fun onCreateView(
@@ -42,8 +47,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        cont = container?.context
-        hUsrViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val view: View = inflater.inflate(R.layout.fragment_register, container, false)
         val btn: Button = view.findViewById(R.id.registerButton)
         val mail = view.findViewById<TextInputLayout?>(R.id.RegisterEmailWrap).editText!!.text
