@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        val navController = findNavController(R.id.myNavHostFragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as androidx.navigation.fragment.NavHostFragment
+        val navController = navHostFragment.navController
+
         NavigationUI.setupWithNavController(binding.navView, navController)
         binding.navView.background = null
         binding.navView.menu.getItem(1).isEnabled = false
@@ -29,13 +31,24 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        //binding.bottomNavigation.selectedItemId = R.id.homepageFragment
+
+        //onClickListeners for home and leaderboard items
         binding.bottomAppBar.setOnMenuItemClickListener{ item ->
             when(item.itemId) {
-                R.id.homepageFragment -> {navController.navigate(R.id.action_leaderboardFragment2_to_homepageFragment2)
-                true}
-                R.id.leaderboardFragment -> {navController.navigate(R.id.action_homepageFragment2_to_leaderboardFragment2)
-                    true}
+                R.id.homepageFragment -> {
+                    if(navController.currentDestination?.id == R.id.homepageFragment) false
+                    else{
+                        navController.navigate(R.id.action_leaderboardFragment3_to_homepageFragment3)
+                        true
+                    }
+                }
+                R.id.leaderboardFragment -> {
+                    if(navController.currentDestination?.id == R.id.leaderboardFragment) false
+                    else{
+                        navController.navigate(R.id.action_leaderboardFragment3_to_homepageFragment3)
+                        true
+                    }
+                }
                 else -> false
             }
         }

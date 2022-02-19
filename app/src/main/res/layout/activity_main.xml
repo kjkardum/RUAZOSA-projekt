@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <fragment
+            <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/myNavHostFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
@@ -43,11 +43,11 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_game"
-            app:layout_anchor="@id/bottomAppBar"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="enterLobby"/>
+            android:onClick="enterLobby"
+            android:src="@drawable/ic_game"
+            app:layout_anchor='@string/bottom_app_bar' />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

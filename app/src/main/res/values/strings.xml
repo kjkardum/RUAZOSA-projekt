@@ -5,4 +5,6 @@
     <string name="home_title">Home</string>
     <string name="leaderboard_title">Leaderboard</string>
     <string name="register_new_account">Register new account</string>
+    <string name="bottom_app_bar">\@id/bottomAppBar</string>
+    <string name="Achievements_text">Achievements</string>
 </resources>
