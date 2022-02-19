@@ -1,10 +1,10 @@
-package hr.fer.ruazosa.kviz2022.forms
+package hr.fer.ruazosa.kviz2022.network.DTOs
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class RegisterForm (
+data class RegisterDTO (
     @Json(name = "email")
     val email: String,
     @Json(name = "userName")

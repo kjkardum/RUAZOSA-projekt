@@ -1,8 +1,6 @@
 package hr.fer.ruazosa.kviz2022.network
 
-import hr.fer.ruazosa.kviz2022.forms.*
-import hr.fer.ruazosa.kviz2022.forms.RegisterForm
-import hr.fer.ruazosa.kviz2022.network.DTOs.UserDTO
+import hr.fer.ruazosa.kviz2022.network.DTOs.*
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.*
@@ -10,10 +8,10 @@ import retrofit2.http.*
 interface AccountService {
 
     @POST("Account/register")
-    fun registerNewAccount(@Body registerform: RegisterForm) : Call<ResponseForm>
+    fun registerNewAccount(@Body registerform: RegisterDTO) : Call<ResponseDTO>
 
     @POST("Account/authenticate")
-    fun authenticateAccount(@Body loginform: LoginForm) : Call<ResponseForm>
+    fun authenticateAccount(@Body loginform: LoginDTO) : Call<ResponseDTO>
 
     @POST("Account/forgot-password")
     fun passwordforgotten(@Body passwordforgotten: POST)

@@ -1,10 +1,10 @@
-package hr.fer.ruazosa.kviz2022.forms
+package hr.fer.ruazosa.kviz2022.network.DTOs
 
 import com.squareup.moshi.Json
 
-data class ResponseForm(
+data class ResponseDTO(
     @Json(name = "errors")
-    val errors: Errors?,
+    val errors: ErrorDTO?,
     @Json(name = "succeeded")
     val succeeded: Boolean?,
     @Json(name = "message")

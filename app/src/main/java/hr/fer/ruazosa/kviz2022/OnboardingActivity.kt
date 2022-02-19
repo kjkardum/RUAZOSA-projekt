@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.account.*
+import hr.fer.ruazosa.kviz2022.database.UserDatabase
 
 
 @AndroidEntryPoint

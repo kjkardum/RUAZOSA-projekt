@@ -1,8 +1,6 @@
 package hr.fer.ruazosa.kviz2022.network
 
-import hr.fer.ruazosa.kviz2022.forms.*
-import hr.fer.ruazosa.kviz2022.network.DTOs.GameDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.GameLeaderboardResponseDTO
+import hr.fer.ruazosa.kviz2022.network.DTOs.*
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.Body
@@ -18,7 +16,7 @@ interface GameService {
     fun getGameLeaderboard(@Path(value = "game_id", encoded = true) gameId: Int): Deferred<GameLeaderboardResponseDTO>
 
     @POST("Game/Start")
-    fun startGame(@Body start: GameStartForm): Call<ResponseForm>
+    fun startGame(@Body start: GameStartDTO): Call<ResponseDTO>
 
     @GET("Game/NextQuestion/{gameId}")
     fun getNextQuestion(@Path(value = "game_id", encoded = true) gameId: Int)

@@ -1,8 +1,8 @@
-package hr.fer.ruazosa.kviz2022.forms
+package hr.fer.ruazosa.kviz2022.network.DTOs
 
 import com.squareup.moshi.Json
 
-data class Errors(
+data class ErrorDTO(
     @Json(name = "ConfirmPassword")
     val ConfirmPassword: List<String>,
     @Json(name = "Email")
