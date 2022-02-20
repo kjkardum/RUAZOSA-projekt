@@ -86,3 +86,4 @@ lint/tmp/
 
 .DS_Store
 
+QuizApi/QuizApi/log-*.txt

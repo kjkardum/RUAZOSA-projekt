@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using QuizApi.Extensions;
 using QuizApi.Middleware;
+using Serilog;
 
 namespace QuizApi
 {
@@ -91,6 +92,7 @@ namespace QuizApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseSerilogRequestLogging();
         }
     }
 }

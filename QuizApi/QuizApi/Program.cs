@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using QuizApi.Data;
 using QuizApi.Entities;
+using Serilog;
 
 namespace QuizApi
 {
@@ -18,7 +19,11 @@ namespace QuizApi
     {
         public static async Task Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args)
+                .UseSerilog((context, configuration) => configuration
+                    .ReadFrom.Configuration(context.Configuration)
+                )
+                .Build();
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
             
