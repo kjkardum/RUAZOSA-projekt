@@ -1,4 +1,4 @@
-package hr.fer.ruazosa.kviz2022.network.DTOs
+package hr.fer.ruazosa.kviz2022.network.DTOs.game
 
 import java.util.*
 

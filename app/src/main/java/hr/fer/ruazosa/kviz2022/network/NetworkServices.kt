@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkServices {
-    private const val BASE_URL = "https://reqres.in/api/"
+    private const val BASE_URL = "https://localhost:5001/api/" //"https://ruazosaapiservice.azurewebsites.net/api/"
 
     @Singleton
     @Provides
@@ -43,4 +43,8 @@ object NetworkServices {
     @Singleton
     @Provides
     fun provideDemoApiService(retrofit: Retrofit): RemoteDemoApiService = retrofit.create(RemoteDemoApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideLoginService(retrofit: Retrofit): RemoteLoginService = retrofit.create(RemoteLoginService::class.java)
 }

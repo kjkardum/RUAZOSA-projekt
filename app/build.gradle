@@ -51,6 +51,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$httpLoginInterceptorVersion"
     //implementation "com.squareup.moshi:moshi:$moshiVersion"
     //implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    implementation "com.auth0.android:jwtdecode:$jwtDecodeVersion"
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$archLifecycleVersion")
