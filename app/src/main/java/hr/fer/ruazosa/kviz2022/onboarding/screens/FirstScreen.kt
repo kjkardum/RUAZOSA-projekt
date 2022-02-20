@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FragmentFirstScreenBinding
@@ -26,21 +27,22 @@ class FirstScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        firstScreenBinding = FragmentFirstScreenBinding.inflate(inflater, container, false)
-            .apply { viewFirstScreen = firstScreenViewModel }
-
-        firstScreenBinding.lifecycleOwner = this
+        firstScreenBinding = FragmentFirstScreenBinding.inflate(
+            inflater, container, false
+        ).apply {
+            viewFirstScreen = firstScreenViewModel
+        }
+        firstScreenBinding.lifecycleOwner = viewLifecycleOwner
         firstScreenViewModel.gotoNext.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
-                    val pager = activity?.findViewById<ViewPager>(R.id.viewPager)
+                    val pager = activity?.findViewById<ViewPager2>(R.id.viewPager)
                     pager?.currentItem = 1
-                    firstScreenViewModel.doneNext()
                 }
             }
         }
 
-        return inflater.inflate(R.layout.fragment_first_screen, container, false)
+        return firstScreenBinding.root
     }
 
 }
