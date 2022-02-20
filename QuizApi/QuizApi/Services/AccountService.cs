@@ -169,6 +169,7 @@ namespace QuizApi.Services
             _logger.LogInformation("SENDING EMAIL, origin is: {Origin}", origin);
             var concatenatedRoute = string.Concat($"{origin}/", route);
             _logger.LogInformation("Concatenated route is: {Route}", concatenatedRoute);
+            if (origin.IsNullOrEmpty()) origin = "https://ruazosaapiservice.azurewebsites.net";
             var _enpointUri = new Uri(string.Concat($"{origin}/", route));
             var verificationUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "userId", user.Id.ToString());
             verificationUri = QueryHelpers.AddQueryString(verificationUri, "code", code);
@@ -204,6 +205,7 @@ namespace QuizApi.Services
 
         public async Task ForgotPassword(ForgotPasswordRequest model, string origin)
         {
+            if (origin.IsNullOrEmpty()) origin = "https://ruazosaapiservice.azurewebsites.net";
             var account = await _userManager.FindByEmailAsync(model.Email);
 
             // always return ok response to prevent email enumeration
