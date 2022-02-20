@@ -11,3 +11,12 @@ import androidx.lifecycle.LiveData
 fun setCounterText(view: TextView, data: LiveData<Int>){
     view.text = "Counter value: '${data.value}'"
 }
+
+@BindingAdapter("userNameText")
+fun setUserNameText(view: TextView, data: LiveData<String>) {
+    if (!data.value.isNullOrEmpty()) {
+        view.text = "Username: '${data.value}'"
+    } else {
+        view.text = "Getting username from Api"
+    }
+}

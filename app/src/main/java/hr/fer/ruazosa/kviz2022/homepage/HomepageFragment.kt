@@ -29,14 +29,14 @@ class HomepageFragment : Fragment() {
             viewModel = homepageViewModel
         }
         viewDataBinding.lifecycleOwner = this
-        homepageViewModel.navigateToSomewhere.observe(viewLifecycleOwner, {
+        homepageViewModel.navigateToSomewhere.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
                     Timber.i("Navigated somewhere")
                     homepageViewModel.doneNavigating()
                 }
             }
-        })
+        }
         return viewDataBinding.root
     }
 }

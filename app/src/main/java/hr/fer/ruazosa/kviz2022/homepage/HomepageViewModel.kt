@@ -3,16 +3,23 @@ package hr.fer.ruazosa.kviz2022.homepage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hr.fer.ruazosa.kviz2022.repository.QuestionsRepository
+import hr.fer.ruazosa.kviz2022.OnboardingActivity
+import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
+import hr.fer.ruazosa.kviz2022.repository.interfaces.QuestionsRepository
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 
 @HiltViewModel
 class HomepageViewModel @Inject constructor(
-    private val repository: QuestionsRepository
+    private val demoDataRepository: DemoDataRepository
 ) : ViewModel() {
+    private val _demoUserName = MutableLiveData<String>("")
+    val demoUserName: LiveData<String> get() = _demoUserName
 
     private val _demoCounter = MutableLiveData<Int>(0)
     val demoCounter: LiveData<Int> get() = _demoCounter
@@ -23,10 +30,22 @@ class HomepageViewModel @Inject constructor(
     private val _navigateToSomewhere = MutableLiveData<Boolean>()
     val navigateToSomewhere: LiveData<Boolean> get() = _navigateToSomewhere
 
+    init {
+        loadUser()
+    }
+
+    private fun loadUser() {
+        viewModelScope.launch {
+            val user = demoDataRepository.getDemoUserAsync(2);
+            if (user.data.firstName != null)
+                _demoUserName.value = user.data.firstName!!;
+        }
+    }
+
     fun navigate() {
         _navigateToSomewhere.value = true
         _demoCounter.value = _demoCounter.value?.plus(1)
-        Timber.i("Repository getQuestion: ${repository.getQuestions().value?.get(0)?.correctAnswer}")
+
     }
     fun doneNavigating() {
         _navigateToSomewhere.value = false

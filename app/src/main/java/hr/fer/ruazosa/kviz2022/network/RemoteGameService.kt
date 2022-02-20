@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface GameService {
+interface RemoteGameService {
     @GET("Game/ActiveGames")
     fun getActiveGames(): Deferred<List<GameDTO>>
 

@@ -45,10 +45,12 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
-    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCouroutinesAdapterVersion"
-    implementation "com.squareup.moshi:moshi:$moshiVersion"
-    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    //implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    //implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCouroutinesAdapterVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$httpLoginInterceptorVersion"
+    //implementation "com.squareup.moshi:moshi:$moshiVersion"
+    //implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$archLifecycleVersion")

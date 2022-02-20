@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.GET
 
-interface LoginService {
+interface RemoteLoginService {
     @POST("Account/register")
     fun registerNewAccount(@Body register: POST)
 
