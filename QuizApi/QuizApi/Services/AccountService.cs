@@ -166,9 +166,9 @@ namespace QuizApi.Services
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var route = "api/account/confirm-email/";
-            _logger.LogInformation("SENDING EMAIL, origin is: {}", origin);
+            _logger.LogInformation("SENDING EMAIL, origin is: {Origin}", origin);
             var concatenatedRoute = string.Concat($"{origin}/", route);
-            _logger.LogInformation("Concatenated route is: {}", concatenatedRoute);
+            _logger.LogInformation("Concatenated route is: {Route}", concatenatedRoute);
             var _enpointUri = new Uri(string.Concat($"{origin}/", route));
             var verificationUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "userId", user.Id.ToString());
             verificationUri = QueryHelpers.AddQueryString(verificationUri, "code", code);
