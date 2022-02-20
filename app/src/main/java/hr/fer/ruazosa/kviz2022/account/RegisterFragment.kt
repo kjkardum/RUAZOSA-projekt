@@ -18,7 +18,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater!!.inflate(R.layout.fragment_register, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_register, container, false)
         val btn: Button = view.findViewById(R.id.registerButton)
         val mail: String = view.findViewById<TextView?>(R.id.RegisterEmail).text.toString()
         val usr: String = view.findViewById<TextView?>(R.id.RegisterUsername).text.toString()

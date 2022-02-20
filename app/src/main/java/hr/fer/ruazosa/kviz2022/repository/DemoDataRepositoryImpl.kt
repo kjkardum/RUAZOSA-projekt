@@ -7,7 +7,6 @@ import hr.fer.ruazosa.kviz2022.network.NetworkServices
 import hr.fer.ruazosa.kviz2022.network.RemoteDemoApiService
 import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
 import kotlinx.coroutines.Deferred
-import okhttp3.internal.wait
 import javax.inject.Inject
 
 class DemoDataRepositoryImpl @Inject constructor(

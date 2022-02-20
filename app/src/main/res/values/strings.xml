@@ -4,4 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_title">Home</string>
     <string name="leaderboard_title">Leaderboard</string>
+    <string name="to_quiz_app_n_where_you_can_play_n_quiz_with_other_players">to Quiz App\n where you can play\n quiz with other players</string>
+    <string name="next">Next</string>
+    <string name="welcome">WELCOME</string>
 </resources>
