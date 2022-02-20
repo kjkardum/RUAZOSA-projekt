@@ -22,11 +22,9 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_splash, container, false)
-
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
         }, 2000)
-
         return view
     }
 
