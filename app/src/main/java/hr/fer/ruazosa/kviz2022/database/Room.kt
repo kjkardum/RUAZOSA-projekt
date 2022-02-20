@@ -5,13 +5,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import hr.fer.ruazosa.kviz2022.database.DAO.UserDAO
-import hr.fer.ruazosa.kviz2022.database.entity.User
+import hr.fer.ruazosa.kviz2022.database.DAO.*
+import hr.fer.ruazosa.kviz2022.database.entity.*
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class, Achievement::class, GameLeaderboardItem::class], version = 2)
 abstract class UserDatabase: RoomDatabase() {
 
     abstract fun userDao(): UserDAO
+    abstract fun achievementDao(): AchievementDAO
+    abstract fun gameLeaderboardItemDao(): GameLeaderboardItemDAO
 
     companion object {
 
