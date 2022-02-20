@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using AssembleIt.Application.DTOs.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using QuizApi.DTOs.Email;
@@ -28,6 +29,7 @@ namespace QuizApi.Services
         private readonly RoleManager<AppRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly ILogger<AccountService> _logger;
         private readonly IDateTimeService _dateTimeService;
         private readonly JWTSettings _jwtSettings;
 
@@ -36,7 +38,8 @@ namespace QuizApi.Services
             IDateTimeService dateTimeService,
             IOptions<JWTSettings> jwtSettings,
             SignInManager<AppUser> signInManager,
-            IEmailService emailService)
+            IEmailService emailService,
+            ILogger<AccountService> logger)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -44,6 +47,7 @@ namespace QuizApi.Services
             _jwtSettings = jwtSettings.Value;
             _signInManager = signInManager;
             _emailService = emailService;
+            _logger = logger;
         }
 
         public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
@@ -162,6 +166,9 @@ namespace QuizApi.Services
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var route = "api/account/confirm-email/";
+            _logger.LogInformation("SENDING EMAIL, origin is: {}", origin);
+            var concatenatedRoute = string.Concat($"{origin}/", route);
+            _logger.LogInformation("Concatenated route is: {}", concatenatedRoute);
             var _enpointUri = new Uri(string.Concat($"{origin}/", route));
             var verificationUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "userId", user.Id.ToString());
             verificationUri = QueryHelpers.AddQueryString(verificationUri, "code", code);
