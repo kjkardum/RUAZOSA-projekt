@@ -8,7 +8,10 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
 import javax.inject.Singleton
+import javax.net.ssl.*
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,11 +27,46 @@ object NetworkServices {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
-        OkHttpClient
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return try {
+            val trustAllCerts: Array<TrustManager> = arrayOf<TrustManager>(
+                object : X509TrustManager {
+                    override fun checkClientTrusted(p0: Array<out X509Certificate>?, p1: String?) {
+
+                    }
+
+                    override fun checkServerTrusted(p0: Array<out X509Certificate>?, p1: String?) {
+
+                    }
+
+                    override fun getAcceptedIssuers(): Array<X509Certificate> {
+                        return arrayOf()
+                    }
+                }
+            )
+
+            val sslContext: SSLContext = SSLContext.getInstance("SSL")
+            sslContext.init(null, trustAllCerts, SecureRandom())
+            val sslSocketFactory: SSLSocketFactory = sslContext.getSocketFactory()
+            val builder = OkHttpClient.Builder()
+            builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
+            builder.hostnameVerifier(object : HostnameVerifier {
+                override fun verify(p0: String?, p1: SSLSession?): Boolean {
+                    return true
+                }
+
+            })
+            builder
+                .addInterceptor(httpLoggingInterceptor)
+                .build()
+        } catch (e: Exception) {
+            throw RuntimeException(e)
+        }
+        /*return OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .build()
+            .build()*/
+    }
 
     @Singleton
     @Provides
