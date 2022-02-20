@@ -8,9 +8,9 @@ import hr.fer.ruazosa.kviz2022.network.DTOs.UserDTO
 import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.AuthenticationResponseDTO
 import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.ResponseDTO
 import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserLoginDTO
+import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserRegisterDTO
 import hr.fer.ruazosa.kviz2022.network.RemoteLoginService
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -32,10 +32,14 @@ class UserRepositoryImpl @Inject constructor(
         return user
     }
 
+    override suspend fun registerAsync(model: UserRegisterDTO): ResponseDTO<String> {
+        logoutUser()
+        return remoteLoginService.registerNewAccount(model)
+    }
+
     override fun isAuthenticated(): Boolean {
         val user = getUser()
         return user != null
-
     }
 
     override fun getUser(): UserDTO? {

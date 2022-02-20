@@ -106,12 +106,12 @@ namespace QuizApi.Services
                 }
                 else
                 {
-                    throw new ApiException($"{result.Errors}");
+                    return new Response<string>($"{result.Errors}");
                 }
             }
             else
             {
-                throw new ApiException($"Email {request.Email } is already registered.");
+                return new Response<string>($"Email {request.Email } is already registered.");
             }
         }
 

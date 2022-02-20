@@ -76,8 +76,6 @@ object NetworkServices {
         .client(okHttpClient)
         .build()
 
-    //val gameService = retrofit.create(RemoteGameService::class.java)
-
     @Singleton
     @Provides
     fun provideDemoApiService(retrofit: Retrofit): RemoteDemoApiService = retrofit.create(RemoteDemoApiService::class.java)
@@ -85,4 +83,8 @@ object NetworkServices {
     @Singleton
     @Provides
     fun provideLoginService(retrofit: Retrofit): RemoteLoginService = retrofit.create(RemoteLoginService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideGameService(retrofit: Retrofit): RemoteGameService = retrofit.create(RemoteGameService::class.java)
 }

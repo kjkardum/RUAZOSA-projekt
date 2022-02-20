@@ -5,7 +5,7 @@ data class QuestionDTO(
     val category: String,
     val difficulty: Int,
     val questionText: String,
-    val answer: String,
+    val answer: String?,
     val jServiceId: Int,
     val gameId: Int
 )

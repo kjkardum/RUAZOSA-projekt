@@ -5,17 +5,17 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import hr.fer.ruazosa.kviz2022.repository.DemoDataRepositoryImpl
-import hr.fer.ruazosa.kviz2022.repository.QuestionRepositoryImpl
+import hr.fer.ruazosa.kviz2022.repository.GameRepositoryImpl
 import hr.fer.ruazosa.kviz2022.repository.UserRepositoryImpl
 import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
-import hr.fer.ruazosa.kviz2022.repository.interfaces.QuestionsRepository
+import hr.fer.ruazosa.kviz2022.repository.interfaces.GameRepository
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 
 @InstallIn(ViewModelComponent::class)
 @Module
-abstract class QuestionRepositoryModule {
+abstract class GameRepositoryModule {
     @Binds
-    abstract fun getQuestionSource(repository: QuestionRepositoryImpl): QuestionsRepository
+    abstract fun getGameSource(repository: GameRepositoryImpl): GameRepository
 }
 
 @InstallIn(ViewModelComponent::class)
