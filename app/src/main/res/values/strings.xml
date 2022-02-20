@@ -7,4 +7,11 @@
     <string name="to_quiz_app_n_where_you_can_play_n_quiz_with_other_players">to Quiz App\n where you can play\n quiz with other players</string>
     <string name="next">Next</string>
     <string name="welcome">WELCOME</string>
+    <string name="questions">QUESTIONS</string>
+    <string name="play_by_answering_to_questions">play by answering to questions</string>
+    <string name="back">Back</string>
+    <string name="login">Login</string>
+    <string name="compete">COMPETE</string>
+    <string name="with_other_people_n_or_friends_and_win">with other people\n or friends and win</string>
+    <string name="quiz_app">QUIZ APP</string>
 </resources>

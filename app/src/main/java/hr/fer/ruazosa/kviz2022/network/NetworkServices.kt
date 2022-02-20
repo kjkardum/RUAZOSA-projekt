@@ -16,7 +16,7 @@ import javax.net.ssl.*
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkServices {
-    private const val BASE_URL = "https://localhost:5001/api/" //"https://ruazosaapiservice.azurewebsites.net/api/"
+    private const val BASE_URL = "https://ruazosaapiservice.azurewebsites.net/api/"
 
     @Singleton
     @Provides

@@ -34,7 +34,6 @@ class HomepageViewModel @Inject constructor(
 
     init {
         loadUser()
-
     }
 
     private fun loadUser() {
