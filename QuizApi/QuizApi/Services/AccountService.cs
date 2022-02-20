@@ -51,16 +51,16 @@ namespace QuizApi.Services
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
             {
-                throw new ApiException($"No Accounts Registered with {request.Email}.");
+                return new Response<AuthenticationResponse>($"No Accounts Registered with {request.Email}.");
             }
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
             if (!result.Succeeded)
             {
-                throw new ApiException($"Invalid Credentials for '{request.Email}'.");
+                return new Response<AuthenticationResponse>($"Invalid Credentials for '{request.Email}'.");
             }
             if (!user.EmailConfirmed)
             {
-                throw new ApiException($"Account Not Confirmed for '{request.Email}'.");
+                return new Response<AuthenticationResponse>($"Account Not Confirmed for '{request.Email}'.");
             }
             JwtSecurityToken jwtSecurityToken = await GenerateJWToken(user);
             AuthenticationResponse response = new AuthenticationResponse();
@@ -81,7 +81,7 @@ namespace QuizApi.Services
             var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
             if (userWithSameUserName != null)
             {
-                throw new ApiException($"Username '{request.UserName}' is already taken.");
+                return new Response<string>($"Username '{request.UserName}' is already taken.");
             }
             var user = new AppUser
             {
@@ -102,12 +102,12 @@ namespace QuizApi.Services
                 }
                 else
                 {
-                    throw new ApiException($"{result.Errors}");
+                    return new Response<string>($"{result.Errors}");
                 }
             }
             else
             {
-                throw new ApiException($"Email {request.Email } is already registered.");
+                return new Response<string>($"Email {request.Email } is already registered.");
             }
         }
 

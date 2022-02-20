@@ -17,13 +17,17 @@ namespace QuizApi.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> AuthenticateAsync(AuthenticationRequest request)
         {
-            return Ok(await _accountService.AuthenticateAsync(request, GenerateIPAddress()));
+            var response = await _accountService.AuthenticateAsync(request, GenerateIPAddress());
+            if (response.Succeeded) return Ok(response);
+            return BadRequest(response);
         }
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync(RegisterRequest request)
         {
             var origin = Request.Headers["origin"];
-            return Ok(await _accountService.RegisterAsync(request, origin));
+            var response = await _accountService.RegisterAsync(request, origin);
+            if (response.Succeeded) return Ok(response);
+            return BadRequest(response);
         }
         [HttpGet("confirm-email")]
         public async Task<IActionResult> ConfirmEmailAsync([FromQuery] string userId, [FromQuery] string code)
