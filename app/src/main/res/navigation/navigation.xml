@@ -9,10 +9,43 @@
         android:id="@+id/homepageFragment"
         android:name="hr.fer.ruazosa.kviz2022.homepage.HomepageFragment"
         android:label="fragment_homepage"
-        tools:layout="@layout/fragment_homepage" />
+        tools:layout="@layout/fragment_homepage" >
+        <action
+            android:id="@+id/action_homepageFragment_to_gameStartFragment2"
+            app:destination="@id/gameStartFragment"
+            app:popUpTo="@id/homepageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
         android:name="hr.fer.ruazosa.kviz2022.leaderboard.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
+    <fragment
+        android:id="@+id/gameStartFragment"
+        android:name="hr.fer.ruazosa.kviz2022.game.start.GameStartFragment"
+        android:label="GameStartFragment" >
+        <action
+            android:id="@+id/action_gameStartFragment2_to_gameQuestionFragment2"
+            app:destination="@id/gameQuestionFragment"
+            app:popUpTo="@id/homepageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameQuestionFragment"
+        android:name="hr.fer.ruazosa.kviz2022.game.question.GameQuestionFragment"
+        android:label="GameQuestionFragment" >
+        <action
+            android:id="@+id/action_gameQuestionFragment2_to_gameResultFragment2"
+            app:destination="@id/gameResultFragment"
+            app:popUpTo="@id/homepageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameResultFragment"
+        android:name="hr.fer.ruazosa.kviz2022.game.result.GameResultFragment"
+        android:label="GameResultFragment" >
+        <action
+            android:id="@+id/action_gameResultFragment2_to_homepageFragment"
+            app:destination="@id/homepageFragment"
+            app:popUpTo="@id/gameStartFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
