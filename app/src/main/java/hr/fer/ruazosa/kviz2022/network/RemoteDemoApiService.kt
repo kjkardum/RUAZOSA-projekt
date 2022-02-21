@@ -1,8 +1,6 @@
 package hr.fer.ruazosa.kviz2022.network
 
-import hr.fer.ruazosa.kviz2022.network.DTOs.DemoApiDTO
-import retrofit2.Call
-import retrofit2.Response
+import hr.fer.ruazosa.kviz2022.network.dto.DemoApiDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 

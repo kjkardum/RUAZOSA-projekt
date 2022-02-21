@@ -1,12 +1,8 @@
 package hr.fer.ruazosa.kviz2022.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import hr.fer.ruazosa.kviz2022.domain.Question
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.GameDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.GameLeaderboardResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.QuestionDTO
-import hr.fer.ruazosa.kviz2022.network.RemoteDemoApiService
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO
 import hr.fer.ruazosa.kviz2022.network.RemoteGameService
 import hr.fer.ruazosa.kviz2022.repository.interfaces.GameRepository
 import javax.inject.Inject

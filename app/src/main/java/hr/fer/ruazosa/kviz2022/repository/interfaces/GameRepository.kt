@@ -1,8 +1,8 @@
 package hr.fer.ruazosa.kviz2022.repository.interfaces
 
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.GameDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.GameLeaderboardResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.QuestionDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO
 
 interface GameRepository {
     suspend fun getActiveGames(): List<GameDTO>

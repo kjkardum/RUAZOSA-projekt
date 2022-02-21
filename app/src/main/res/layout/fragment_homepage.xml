@@ -74,8 +74,10 @@
                         android:text="Follow recommendations" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/followerRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/followsuggestions_item" />
 
                 </LinearLayout>
 
@@ -97,7 +99,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

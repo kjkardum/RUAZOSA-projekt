@@ -1,22 +1,50 @@
 package hr.fer.ruazosa.kviz2022.homepage
 
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import hr.fer.ruazosa.kviz2022.R
+import hr.fer.ruazosa.kviz2022.databinding.FollowsuggestionsItemBinding
+import hr.fer.ruazosa.kviz2022.network.dto.FollowerDTO
 
-/**
- * Demo binding adapter to show counter on homepage
- */
-@BindingAdapter("counterText")
-fun setCounterText(view: TextView, data: LiveData<Int>){
-    view.text = "Counter value: '${data.value}'"
+class FollowerClick(val block: (FollowerDTO) -> Unit) {
+    fun onClick(follower: FollowerDTO) = block(follower)
 }
 
-@BindingAdapter("emailText")
-fun seEmailText(view: TextView, data: LiveData<String>) {
-    if (!data.value.isNullOrEmpty()) {
-        view.text = "Email: '${data.value}'"
-    } else {
-        view.text = "Getting email from Api"
+class FollowerAdapter(val callback: FollowerClick) : RecyclerView.Adapter<FollowersViewHolder>() {
+    var followers: List<FollowerDTO> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowersViewHolder {
+        val withDataBinding: FollowsuggestionsItemBinding = DataBindingUtil
+            .inflate(
+                LayoutInflater.from(parent.context),
+                FollowersViewHolder.LAYOUT,
+                parent,
+                false)
+        return FollowersViewHolder(withDataBinding)
     }
+
+    override fun onBindViewHolder(holder: FollowersViewHolder, position: Int) {
+        holder.viewDataBinding.also {
+            it.follower = followers[position]
+            it.followerClick = callback
+        }
+    }
+
+    override fun getItemCount() = followers.size
+
 }
+
+class FollowersViewHolder(val viewDataBinding: FollowsuggestionsItemBinding) :
+    RecyclerView.ViewHolder(viewDataBinding.root) {
+        companion object {
+            @LayoutRes
+            val LAYOUT = R.layout.followsuggestions_item
+        }
+    }

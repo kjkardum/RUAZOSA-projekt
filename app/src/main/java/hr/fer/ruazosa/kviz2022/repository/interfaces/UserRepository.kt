@@ -1,9 +1,9 @@
 package hr.fer.ruazosa.kviz2022.repository.interfaces
 
-import hr.fer.ruazosa.kviz2022.network.DTOs.UserDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.AuthenticationResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.ResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserRegisterDTO
+import hr.fer.ruazosa.kviz2022.network.dto.UserDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.AuthenticationResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.ResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserRegisterDTO
 
 interface UserRepository {
     suspend fun authenticateAsync(email: String, password: String): ResponseDTO<AuthenticationResponseDTO>

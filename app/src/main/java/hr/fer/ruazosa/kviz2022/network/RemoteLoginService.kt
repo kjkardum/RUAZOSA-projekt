@@ -1,10 +1,10 @@
 package hr.fer.ruazosa.kviz2022.network
 
-import hr.fer.ruazosa.kviz2022.network.DTOs.UserDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.AuthenticationResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.ResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserLoginDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserRegisterDTO
+import hr.fer.ruazosa.kviz2022.network.dto.UserDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.AuthenticationResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.ResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserLoginDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserRegisterDTO
 import kotlinx.coroutines.Deferred
 import retrofit2.http.Body
 import retrofit2.http.POST

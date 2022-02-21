@@ -1,4 +1,4 @@
-package hr.fer.ruazosa.kviz2022.network.DTOs;
+package hr.fer.ruazosa.kviz2022.network.dto;
 
 data class UserDTO(
     val userId: Int,

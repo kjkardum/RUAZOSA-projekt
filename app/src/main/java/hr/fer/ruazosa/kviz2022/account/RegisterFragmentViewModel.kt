@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserRegisterDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserRegisterDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject

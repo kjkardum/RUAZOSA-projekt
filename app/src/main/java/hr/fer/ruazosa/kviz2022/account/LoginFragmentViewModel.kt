@@ -1,18 +1,12 @@
 package hr.fer.ruazosa.kviz2022.account
 
-import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hr.fer.ruazosa.kviz2022.homepage.HomepageViewModel
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.ResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserLoginDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
-import retrofit2.Call
 import timber.log.Timber
 import javax.inject.Inject
 

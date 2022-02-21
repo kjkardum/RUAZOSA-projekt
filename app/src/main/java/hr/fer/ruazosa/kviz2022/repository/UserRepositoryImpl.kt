@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.auth0.android.jwt.JWT
 import dagger.hilt.android.qualifiers.ApplicationContext
-import hr.fer.ruazosa.kviz2022.network.DTOs.UserDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.AuthenticationResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.ResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserLoginDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserRegisterDTO
+import hr.fer.ruazosa.kviz2022.network.dto.UserDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.AuthenticationResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.ResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserLoginDTO
+import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserRegisterDTO
 import hr.fer.ruazosa.kviz2022.network.RemoteLoginService
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import java.util.*
@@ -20,10 +20,12 @@ class UserRepositoryImpl @Inject constructor(
 ): UserRepository {
     override suspend fun authenticateAsync(email: String, password: String): ResponseDTO<AuthenticationResponseDTO> {
         logoutUser()
-        val user = remoteLoginService.authenticateAccount(UserLoginDTO(
+        val user = remoteLoginService.authenticateAccount(
+            UserLoginDTO(
             email = email,
             password = password,
-        ))
+        )
+        )
         if (!user.succeeded) return user
         val token = user.data!!.jwToken
         PreferenceManager.getDefaultSharedPreferences(context).edit().apply {

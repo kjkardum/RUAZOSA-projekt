@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import hr.fer.ruazosa.kviz2022.network.dto.FollowerDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
@@ -17,6 +18,10 @@ class HomepageViewModel @Inject constructor(
     private val demoDataRepository: DemoDataRepository,
     private val userRepository: UserRepository,
 ) : ViewModel() {
+
+    private val _suggestedFollowers = MutableLiveData<List<FollowerDTO>>()
+    val suggestedFollowers: LiveData<List<FollowerDTO>> get() = _suggestedFollowers
+
     private val _loggedInEmail = MutableLiveData<String>("")
     val loggedInEmail: LiveData<String> get() = _loggedInEmail
 

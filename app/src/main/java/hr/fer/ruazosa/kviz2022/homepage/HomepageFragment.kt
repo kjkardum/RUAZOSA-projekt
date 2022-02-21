@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
+import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FragmentHomepageBinding
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomepageFragment : Fragment() {
@@ -17,6 +21,17 @@ class HomepageFragment : Fragment() {
     private val homepageViewModel by viewModels<HomepageViewModel>()
 
     private lateinit var viewDataBinding: FragmentHomepageBinding
+
+    private var viewModelFollowerAdapter: FollowerAdapter? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        homepageViewModel.suggestedFollowers.observe(viewLifecycleOwner) {
+            it?.apply {
+                viewModelFollowerAdapter?.followers = this
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +43,15 @@ class HomepageFragment : Fragment() {
         ).apply {
             viewModel = homepageViewModel
         }
+
+        viewModelFollowerAdapter = FollowerAdapter(FollowerClick {
+            Timber.d("CLICKED FOLLOWER ITEM ${it.id}")
+        })
+        viewDataBinding.root.findViewById<RecyclerView>(R.id.followerRecyclerView).apply {
+            layoutManager = LinearLayoutManager(context);
+            adapter = viewModelFollowerAdapter;
+        }
+
         viewDataBinding.lifecycleOwner = this
         homepageViewModel.logoutAction.observe(viewLifecycleOwner) {
             it?.let {

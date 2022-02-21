@@ -1,10 +1,9 @@
 package hr.fer.ruazosa.kviz2022.network
 
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.GameDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.GameLeaderboardResponseDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.NewGameDTO
-import hr.fer.ruazosa.kviz2022.network.DTOs.game.QuestionDTO
-import kotlinx.coroutines.Deferred
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.NewGameDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
