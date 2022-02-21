@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/ic_next.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.2045" />
+        <entry key="app/src/main/res/drawable/round_outline.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.34074074074074073" />
         <entry key="app/src/main/res/drawable/unselected_dot.xml" value="0.4197916666666667" />
         <entry key="app/src/main/res/layout/achievements_row.xml" value="0.33133817870884996" />
@@ -32,7 +33,7 @@
         <entry key="app/src/main/res/layout/fragment_game_question.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_game_result.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_game_start.xml" value="0.18333333333333332" />
-        <entry key="app/src/main/res/layout/fragment_homepage.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_homepage.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_howtoplay.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.30434782608695654" />
         <entry key="app/src/main/res/layout/fragment_leaderboard.xml" value="0.35597826086956524" />
