@@ -1,15 +1,15 @@
 package hr.fer.ruazosa.kviz2022.homepage
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.databinding.FragmentHomepageBinding
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomepageFragment : Fragment() {
@@ -29,11 +29,13 @@ class HomepageFragment : Fragment() {
             viewModel = homepageViewModel
         }
         viewDataBinding.lifecycleOwner = this
-        homepageViewModel.navigateToSomewhere.observe(viewLifecycleOwner) {
+        homepageViewModel.logoutAction.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
-                    Timber.i("Navigated somewhere")
-                    homepageViewModel.doneNavigating()
+                    homepageViewModel.finishLogout()
+                    val intent = Intent(activity, OnboardingActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
                 }
             }
         }

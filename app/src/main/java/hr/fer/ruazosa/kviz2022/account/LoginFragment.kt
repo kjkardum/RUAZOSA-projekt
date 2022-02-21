@@ -1,5 +1,6 @@
 package hr.fer.ruazosa.kviz2022.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
+import hr.fer.ruazosa.kviz2022.MainActivity
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FragmentHomepageBinding
@@ -45,6 +47,9 @@ class LoginFragment : Fragment(R.layout.fragment_login){
             it?.let {
                 if (it){
                     Toast.makeText(context, "Welcome!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(activity, MainActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
                 }
             }
         }

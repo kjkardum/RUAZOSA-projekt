@@ -3,11 +3,9 @@ package hr.fer.ruazosa.kviz2022.homepage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,25 +18,19 @@ class HomepageViewModel @Inject constructor(
     private val _demoUserName = MutableLiveData<String>("")
     val demoUserName: LiveData<String> get() = _demoUserName
 
-    private val _demoCounter = MutableLiveData<Int>(0)
-    val demoCounter: LiveData<Int> get() = _demoCounter
-
-    private val _achievements = MutableLiveData<List<String>>()
-    val achievements: LiveData<List<String>> get() = _achievements
-
-    private val _navigateToSomewhere = MutableLiveData<Boolean>()
-    val navigateToSomewhere: LiveData<Boolean> get() = _navigateToSomewhere
+    private val _logoutAction = MutableLiveData<Boolean>()
+    val logoutAction: LiveData<Boolean> get() = _logoutAction
 
     init {
     }
 
-    fun navigate() {
-        _navigateToSomewhere.value = true
-        _demoCounter.value = _demoCounter.value?.plus(1)
+    fun logout() {
+        userRepository.logoutUser()
+        _logoutAction.value = true
 
     }
-    fun doneNavigating() {
-        _navigateToSomewhere.value = false
+    fun finishLogout() {
+        _logoutAction.value = false
     }
 
     override fun onCleared() {
