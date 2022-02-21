@@ -30,14 +30,6 @@ class HomepageViewModel @Inject constructor(
     val navigateToSomewhere: LiveData<Boolean> get() = _navigateToSomewhere
 
     init {
-        loadUser()
-    }
-
-    private fun loadUser() {
-        viewModelScope.launch {
-            val user = userRepository.authenticateAsync("admin@quizapp.com", "Pa\$\$w0rd")
-            _demoUserName.value = userRepository.getUser()?.email
-        }
     }
 
     fun navigate() {

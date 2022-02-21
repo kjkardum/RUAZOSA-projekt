@@ -47,7 +47,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/LoginEmail"
-                        android:text="@{loginViewModel.email}"
+                        android:text="@={loginViewModel.email}"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
                         android:ems="10" />
@@ -62,7 +62,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/LoginPassword"
-                        android:text="@{loginViewModel.password}"
+                        android:text="@={loginViewModel.password}"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -81,7 +81,7 @@
                 app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
-                android:onClick="@{() -> loginViewModel.registerUser()}"
+                android:onClick="@{() -> loginViewModel.navigateToRegistration()}"
                 android:id="@+id/RegisterNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

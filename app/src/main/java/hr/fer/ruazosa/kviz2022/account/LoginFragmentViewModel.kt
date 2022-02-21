@@ -21,11 +21,9 @@ class LoginFragmentViewModel @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel() {
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> get() = _email
+    val email = MutableLiveData<String>()
 
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String> get() = _password
+    val password = MutableLiveData<String>()
 
     private val _logged = MutableLiveData<Boolean>()
     val logged: LiveData<Boolean> get() = _logged
@@ -35,7 +33,7 @@ class LoginFragmentViewModel @Inject constructor(
 
     fun loginUser(){
         viewModelScope.launch {
-            val user = userRepository.authenticateAsync(_email.value.toString(), _password.value.toString())
+            val user = userRepository.authenticateAsync(email.value.toString(), password.value.toString())
             if (!user.succeeded){
                 Timber.d("errors")
             }
@@ -43,7 +41,10 @@ class LoginFragmentViewModel @Inject constructor(
         }
     }
 
-    fun registerUser(){
+    fun navigateToRegistration(){
         _register.value = true
+    }
+    fun doneNavigating(){
+        _register.value = false
     }
 }

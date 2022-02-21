@@ -9,12 +9,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FragmentLoginBinding
 import hr.fer.ruazosa.kviz2022.databinding.FragmentRegisterBinding
 
-
+@AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private val registerFragmentViewModel by viewModels<RegisterFragmentViewModel>()

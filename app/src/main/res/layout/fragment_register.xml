@@ -44,7 +44,7 @@
                     android:hint="@string/username">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:text="@{registerViewModel.userName}"
+                        android:text="@={registerViewModel.userName}"
                         android:id="@+id/RegisterUsername"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
@@ -58,7 +58,7 @@
                     android:hint="@string/email">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:text="@{registerViewModel.email}"
+                        android:text="@={registerViewModel.email}"
                         android:id="@+id/RegisterEmail"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
@@ -73,7 +73,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:text="@{registerViewModel.password}"
+                        android:text="@={registerViewModel.password}"
                         android:id="@+id/RegisterPassword"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
@@ -89,7 +89,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:text="@{registerViewModel.passwordRepeat}"
+                        android:text="@={registerViewModel.passwordRepeat}"
                         android:id="@+id/RegisterRepeatPassword"
                         android:layout_width="350dp"
                         android:layout_height="50dp"

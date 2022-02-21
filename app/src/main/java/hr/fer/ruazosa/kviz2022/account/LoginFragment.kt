@@ -40,7 +40,7 @@ class LoginFragment : Fragment(R.layout.fragment_login){
         ).apply {
             loginViewModel = loginFragmentViewModel
         }
-        viewDataBinding.lifecycleOwner = viewLifecycleOwner
+        viewDataBinding.lifecycleOwner = this
         loginFragmentViewModel.logged.observe(viewLifecycleOwner){
             it?.let {
                 if (it){
@@ -52,6 +52,7 @@ class LoginFragment : Fragment(R.layout.fragment_login){
         loginFragmentViewModel.register.observe(viewLifecycleOwner){
             it?.let {
                 if (it){
+                    loginFragmentViewModel.doneNavigating()
                     findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
                 }
             }

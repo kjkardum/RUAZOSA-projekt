@@ -4,33 +4,35 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import hr.fer.ruazosa.kviz2022.network.DTOs.authentication.UserRegisterDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class RegisterFragmentViewModel @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel() {
 
-    private val _email = MutableLiveData<String>("")
-    val email: LiveData<String> get() = _email
+    val email = MutableLiveData<String>("")
 
-    private val _password = MutableLiveData<String>("")
-    val password: LiveData<String> get() = _password
+    val password = MutableLiveData<String>("")
 
-    private val _passwordRepeat = MutableLiveData<String>("")
-    val passwordRepeat: LiveData<String> get() = _passwordRepeat
+    val passwordRepeat = MutableLiveData<String>("")
 
-    private val _userName = MutableLiveData<String>("")
-    val userName: LiveData<String> get() = _userName
+    val userName = MutableLiveData<String>("")
 
     private val _registration = MutableLiveData<Boolean>()
     val registration: LiveData<Boolean> get() = _registration
 
     fun register(){
         viewModelScope.launch {
-            val form = UserRegisterDTO(_email.value.toString(), _userName.value.toString(), _password.value.toString(), _passwordRepeat.value.toString())
+            val form = UserRegisterDTO(
+                email.value.toString(),
+                userName.value.toString(),
+                password.value.toString(),
+                passwordRepeat.value.toString())
             val user = userRepository.registerAsync(form)
             _registration.value = user.succeeded
         }
