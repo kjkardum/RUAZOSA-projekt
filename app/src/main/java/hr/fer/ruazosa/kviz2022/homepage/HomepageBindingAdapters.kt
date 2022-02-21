@@ -15,7 +15,7 @@ fun setCounterText(view: TextView, data: LiveData<Int>){
 @BindingAdapter("emailText")
 fun seEmailText(view: TextView, data: LiveData<String>) {
     if (!data.value.isNullOrEmpty()) {
-        view.text = "Username: '${data.value}'"
+        view.text = "Email: '${data.value}'"
     } else {
         view.text = "Getting email from Api"
     }

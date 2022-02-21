@@ -16,7 +16,7 @@
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
-            emailText="@{viewModel.demoUserName}"
+            emailText="@{viewModel.loggedInEmail}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="24sp" />

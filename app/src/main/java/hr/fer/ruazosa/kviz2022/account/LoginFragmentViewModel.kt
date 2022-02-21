@@ -20,6 +20,8 @@ import javax.inject.Inject
 class LoginFragmentViewModel @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel() {
+    private val _errors = MutableLiveData<String>()
+    val errors: LiveData<String> get() = _errors
 
     val email = MutableLiveData<String>()
 
@@ -33,9 +35,11 @@ class LoginFragmentViewModel @Inject constructor(
 
     fun loginUser(){
         viewModelScope.launch {
-            val user = userRepository.authenticateAsync(email.value.toString(), password.value.toString())
+            val user = userRepository.authenticateAsync(email.value?:"", password.value?:"")
             if (!user.succeeded){
                 Timber.d("errors")
+                _errors.value = user?.message ?: ""
+                Timber.d(_errors.value);
             }
             _logged.value = user.succeeded
         }

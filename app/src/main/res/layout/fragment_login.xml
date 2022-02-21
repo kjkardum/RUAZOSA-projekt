@@ -47,10 +47,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/LoginEmail"
-                        android:text="@={loginViewModel.email}"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
-                        android:ems="10" />
+                        android:ems="10"
+                        android:text="@={loginViewModel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -62,37 +62,46 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/LoginPassword"
-                        android:text="@={loginViewModel.password}"
                         android:layout_width="350dp"
                         android:layout_height="50dp"
                         android:ems="10"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:text="@={loginViewModel.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/TextError"
+                android:text="@{loginViewModel.errors}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#FF6A6A"
+                tools:text="ERROR!!!" />
+
             <Button
-                android:onClick="@{() -> loginViewModel.loginUser()}"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
+                android:onClick="@{() -> loginViewModel.loginUser()}"
                 android:text="@string/login"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
-                android:onClick="@{() -> loginViewModel.navigateToRegistration()}"
                 android:id="@+id/RegisterNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/new_user_register_now"
                 android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> loginViewModel.navigateToRegistration()}"
+                android:text="@string/new_user_register_now"
                 android:textColor="@color/md_theme_dark_error"
                 android:textSize="17sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:focusable="true" />
+                app:layout_constraintRight_toRightOf="parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
