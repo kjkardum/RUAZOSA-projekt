@@ -1,5 +1,6 @@
 package hr.fer.ruazosa.kviz2022.onboarding
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -21,11 +22,18 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_splash, container, false)
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            if (onBoardingDone()){
+                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            }
         }, 2000)
-        return view
+        return inflater.inflate(R.layout.fragment_splash, container, false)
+    }
+
+    private fun onBoardingDone(): Boolean{
+        return requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE).getBoolean("finished", false)
     }
 
 }

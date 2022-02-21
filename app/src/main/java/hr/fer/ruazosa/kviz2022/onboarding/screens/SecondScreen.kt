@@ -35,7 +35,7 @@ class SecondScreen : Fragment() {
             it?.let {
                 if (it) {
                     val pager = activity?.findViewById<ViewPager2>(R.id.viewPager)
-                    pager?.currentItem = 1
+                    pager?.currentItem = pager?.currentItem?.minus(1)!!
                 }
             }
         }

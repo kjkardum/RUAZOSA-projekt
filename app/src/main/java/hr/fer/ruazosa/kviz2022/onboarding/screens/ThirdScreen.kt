@@ -1,11 +1,13 @@
 package hr.fer.ruazosa.kviz2022.onboarding.screens
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FragmentSecondScreenBinding
@@ -35,7 +37,7 @@ class ThirdScreen : Fragment() {
             it?.let {
                 if (it) {
                     val pager = activity?.findViewById<ViewPager2>(R.id.viewPager)
-                    pager?.currentItem = 2
+                    pager?.currentItem = pager?.currentItem?.minus(1)!!
                 }
             }
         }
@@ -43,7 +45,10 @@ class ThirdScreen : Fragment() {
         thirdScreenViewModel.gotoLogin.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
-                    Timber.d("TODO")
+                    findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
+                    val editor = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE).edit()
+                    editor.putBoolean("finished", true)
+                    editor.apply()
                 }
             }
         }

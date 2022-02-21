@@ -6,32 +6,44 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
 import hr.fer.ruazosa.kviz2022.R
+import hr.fer.ruazosa.kviz2022.databinding.FragmentLoginBinding
+import hr.fer.ruazosa.kviz2022.databinding.FragmentRegisterBinding
 
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
+
+    private val registerFragmentViewModel by viewModels<RegisterFragmentViewModel>()
+
+    private lateinit var viewDataBinding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_register, container, false)
-        val btn: Button = view.findViewById(R.id.registerButton)
-        val mail: String = view.findViewById<TextView?>(R.id.RegisterEmail).text.toString()
-        val usr: String = view.findViewById<TextView?>(R.id.RegisterUsername).text.toString()
-        val pass: String = view.findViewById<TextView?>(R.id.RegisterPassword).text.toString()
-        val rpass: String = view.findViewById<TextView?>(R.id.RegisterRepeatPassword).text.toString()
-        btn.setOnClickListener {
-            makeRegistration(mail, usr, pass, rpass)
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+        viewDataBinding = FragmentRegisterBinding.inflate(
+            inflater, container, false
+        ).apply {
+            registerViewModel = registerFragmentViewModel
         }
-        return view
+
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
+
+        registerFragmentViewModel.registration.observe(viewLifecycleOwner){
+            it?.let {
+                if (it){
+                    Toast.makeText(context, "Welcome!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        return viewDataBinding.root
     }
 
-    private fun makeRegistration(mail : String, usr: String, pass: String, rpass: String){
-        /** TODO **/
-        (this.activity as OnboardingActivity?)?.onFinishOnboarding()
-    }
 }

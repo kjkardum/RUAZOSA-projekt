@@ -10,8 +10,18 @@
     <string name="questions">QUESTIONS</string>
     <string name="play_by_answering_to_questions">play by answering to questions</string>
     <string name="back">Back</string>
-    <string name="login">Login</string>
     <string name="compete">COMPETE</string>
     <string name="with_other_people_n_or_friends_and_win">with other people\n or friends and win</string>
     <string name="quiz_app">QUIZ APP</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="new_user_register_now">New user? Register Now</string>
+    <string name="or_use_other_methods">Or use other methods</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="register_new_account">Register new account</string>
+    <string name="username">Username</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="by_clicking_register_you_agree_to_tos">By clicking Register you agree to ToS</string>
+    <string name="register">Register</string>
 </resources>
