@@ -59,11 +59,3 @@ fun setNumber(view: TextView, value: Int?) {
 fun setGamePoints(view: TextView, data: Int){
     view.text = "Total: ${data} points"
 }
-
-@BindingAdapter("position_background")
-fun setPositionBackground(view: ConstraintLayout, position: Int) {
-    if (position < 3) {
-        view.background= ColorDrawable(R.color.md_theme_dark_onPrimary)
-    } else {
-        view.background = null
-    }}
