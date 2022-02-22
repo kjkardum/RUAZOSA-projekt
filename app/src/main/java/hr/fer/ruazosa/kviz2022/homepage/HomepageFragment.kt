@@ -27,6 +27,7 @@ class HomepageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         homepageViewModel.suggestedFollowers.observe(viewLifecycleOwner) {
             it?.apply {
                 viewModelFollowerAdapter?.followers = this

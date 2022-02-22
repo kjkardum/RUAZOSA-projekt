@@ -32,7 +32,9 @@ class HomepageViewModel @Inject constructor(
 
     init {
         getUser()
-        getSuggestedFollowers()
+        if (!_loggedInEmail.value.isNullOrEmpty()) {
+            getSuggestedFollowers()
+        }
     }
 
     private fun getSuggestedFollowers() {
