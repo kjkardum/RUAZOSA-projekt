@@ -57,6 +57,23 @@ namespace QuizApi.Services
             };
         }
 
+        public async Task<List<GameLeaderboardResponseItem>> GetTotalLeaderboard()
+        {
+            var users = (await _userGameRepository.AsReadOnly()
+                .Include(ug => ug.User)
+                .ToListAsync())
+                .GroupBy(ug => ug.UserId)
+                .Select(g => new GameLeaderboardResponseItem
+                {
+                    UserId = g.Key,
+                    UserName = g.First().User.UserName,
+                    NumberOfPoints = g.Sum(ug => ug.Points)
+                })
+                .OrderByDescending(g => g.NumberOfPoints)
+                .ToList();
+            return users;
+        }
+        
         public async Task<QuestionModel> GetNextGameQuestion(int currentUserId, int gameId)
         {
             var userGame = await _userGameRepository.AsReadOnly()

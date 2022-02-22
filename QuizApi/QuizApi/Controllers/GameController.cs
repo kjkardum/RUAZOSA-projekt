@@ -50,5 +50,12 @@ namespace QuizApi.Controllers
         {
             return Ok(await _service.GetGameLeaderboard(gameId));
         }
+        
+        [HttpGet, Route("TotalLeaderboard")]
+        [Authorize]
+        public async Task<IActionResult> GetTotalLeaderboard()
+        {
+            return Ok(await _service.GetTotalLeaderboard());
+        }
     }
 }
