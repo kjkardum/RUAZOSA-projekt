@@ -1,15 +1,22 @@
 package hr.fer.ruazosa.kviz2022.network
 
+import android.content.Context
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import hr.fer.ruazosa.kviz2022.repository.UserRepositoryImpl
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
+import javax.inject.Inject
 import javax.inject.Singleton
 import javax.net.ssl.*
 
@@ -17,6 +24,30 @@ import javax.net.ssl.*
 @InstallIn(SingletonComponent::class)
 object NetworkServices {
     private const val BASE_URL = "https://ruazosaapiservice.azurewebsites.net/api/"
+
+    class ServiceInterceptor constructor(var context: Context) : Interceptor{
+        var token : String = "";
+        fun Token(token: String ) {
+            this.token = token;
+        }
+        override fun intercept(chain: Interceptor.Chain): Response {
+            var request = chain.request()
+            if(request.header("No-Authentication")==null){
+                val token = PreferenceManager
+                    .getDefaultSharedPreferences(context)
+                    .getString(UserRepositoryImpl.USER_TOKEN_NAME, "")
+                if(!token.isNullOrEmpty())
+                {
+                    val finalToken =  "Bearer " + token
+                    request = request.newBuilder()
+                        .addHeader("Authorization",finalToken)
+                        .build()
+                }
+            }
+            return chain.proceed(request)
+        }
+
+    }
 
     @Singleton
     @Provides
@@ -27,7 +58,12 @@ object NetworkServices {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun providesAuthorizationInterceptor(@ApplicationContext context: Context) = ServiceInterceptor(context)
+
+    @Singleton
+    @Provides
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor,
+                             authorizationInterceptor: ServiceInterceptor): OkHttpClient {
         return try {
             val trustAllCerts: Array<TrustManager> = arrayOf<TrustManager>(
                 object : X509TrustManager {
@@ -48,6 +84,7 @@ object NetworkServices {
             })
             builder
                 .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(authorizationInterceptor)
                 .build()
         } catch (e: Exception) {
             throw RuntimeException(e)

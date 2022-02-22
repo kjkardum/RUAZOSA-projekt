@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hr.fer.ruazosa.kviz2022.network.dto.*
 import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
+import hr.fer.ruazosa.kviz2022.repository.interfaces.FollowersRepository
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class HomepageViewModel @Inject constructor(
     private val demoDataRepository: DemoDataRepository,
     private val userRepository: UserRepository,
+    private val followersRepository: FollowersRepository
 ) : ViewModel() {
 
     private val _suggestedFollowers = MutableLiveData<List<GameUserDTO>>()
@@ -30,14 +32,20 @@ class HomepageViewModel @Inject constructor(
 
     init {
         getUser()
-        _suggestedFollowers.value = listOf(
-            GameUserDTO(
-                id = 1,
-                userName = "Demo",
-                totalGamesPoints = 0,
-                following = listOf(),
-            )
-        )
+        getSuggestedFollowers()
+    }
+
+    private fun getSuggestedFollowers() {
+        viewModelScope.launch {
+            _suggestedFollowers.value = followersRepository.followSuggestions()
+        }
+    }
+
+    fun followUser(user: GameUserDTO) {
+        viewModelScope.launch {
+            followersRepository.addFollower(user.id)
+            getSuggestedFollowers()
+        }
     }
 
     private fun getUser() {

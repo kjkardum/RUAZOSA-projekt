@@ -10,14 +10,14 @@ class FollowersRepositoryImpl @Inject constructor(
     private val remoteFollowersService: RemoteFollowersService
 ) : FollowersRepository {
     override suspend fun getFollowedUsers(): List<GameUserDTO> {
-        TODO("Not yet implemented")
+        return remoteFollowersService.getFollowedUsers()
     }
 
     override suspend fun addFollower(followerId: Int): FollowerDTO {
-        TODO("Not yet implemented")
+        return remoteFollowersService.addFollower(followerId)
     }
 
     override suspend fun followSuggestions(): List<GameUserDTO> {
-        TODO("Not yet implemented")
+        return remoteFollowersService.followSuggestions()
     }
 }

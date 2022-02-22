@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +46,7 @@ class HomepageFragment : Fragment() {
         }
 
         viewModelFollowerAdapter = FollowerAdapter(FollowerClick {
-            Timber.d("CLICKED FOLLOWER ITEM ${it.id}")
+            homepageViewModel.followUser(it)
         })
         viewDataBinding.root.findViewById<RecyclerView>(R.id.followerRecyclerView).apply {
             layoutManager = LinearLayoutManager(context);
