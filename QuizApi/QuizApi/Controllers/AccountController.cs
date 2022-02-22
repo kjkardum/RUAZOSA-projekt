@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using AssembleIt.Application.DTOs.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using QuizApi.Extensions;
 using QuizApi.Interfaces;
 
 namespace QuizApi.Controllers
@@ -14,6 +16,15 @@ namespace QuizApi.Controllers
         {
             _accountService = accountService;
         }
+        [HttpGet("getUser")]
+        [Authorize]
+        public async Task<IActionResult> GetUser()
+        {
+            var userId = User.GetUserId();
+            var user = await _accountService.GetUser(userId);
+            return Ok(user);
+        }
+        
         [HttpPost("authenticate")]
         public async Task<IActionResult> AuthenticateAsync(AuthenticationRequest request)
         {

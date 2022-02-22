@@ -12,5 +12,6 @@ namespace QuizApi.Interfaces
         Task ForgotPassword(ForgotPasswordRequest model, string origin);
         Task<Response<string>> ResetPassword(ResetPasswordRequest model);
         Task<Response<string>> ChangePassword(ChangePasswordRequest model);
+        Task<UserModel> GetUser(int userId);
     }
 }

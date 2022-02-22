@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using AssembleIt.Application.DTOs.Account;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
@@ -30,6 +31,7 @@ namespace QuizApi.Services
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailService _emailService;
         private readonly ILogger<AccountService> _logger;
+        private readonly IMapper _mapper;
         private readonly IDateTimeService _dateTimeService;
         private readonly JWTSettings _jwtSettings;
 
@@ -39,7 +41,8 @@ namespace QuizApi.Services
             IOptions<JWTSettings> jwtSettings,
             SignInManager<AppUser> signInManager,
             IEmailService emailService,
-            ILogger<AccountService> logger)
+            ILogger<AccountService> logger,
+            IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -48,6 +51,13 @@ namespace QuizApi.Services
             _signInManager = signInManager;
             _emailService = emailService;
             _logger = logger;
+            _mapper = mapper;
+        }
+
+        public async Task<UserModel> GetUser(int userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            return _mapper.Map<UserModel>(user);
         }
 
         public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
