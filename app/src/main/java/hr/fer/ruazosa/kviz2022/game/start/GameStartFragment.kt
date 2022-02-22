@@ -17,6 +17,7 @@ import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.account.LoginFragmentViewModel
 import hr.fer.ruazosa.kviz2022.databinding.FragmentGameStartBinding
 import hr.fer.ruazosa.kviz2022.databinding.FragmentLoginBinding
+import hr.fer.ruazosa.kviz2022.homepage.FollowerAdapter
 
 @AndroidEntryPoint
 class GameStartFragment : Fragment() {
@@ -24,6 +25,19 @@ class GameStartFragment : Fragment() {
     private val viewModel by viewModels<GameStartViewModel>()
 
     private lateinit var viewDataBinding: FragmentGameStartBinding
+
+    private var viewModelGameStartAdapter: GameStartAdapter? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.followers.observe(viewLifecycleOwner){
+            it?.apply {
+                viewModelGameStartAdapter?.followers = this
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
