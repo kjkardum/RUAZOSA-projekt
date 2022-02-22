@@ -7,6 +7,8 @@
             name="viewModelBinding"
             type="hr.fer.ruazosa.kviz2022.game.question.GameQuestionViewModel" />
     </data>
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
 </layout>

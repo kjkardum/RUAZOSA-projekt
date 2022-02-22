@@ -31,20 +31,11 @@ object NetworkServices {
         return try {
             val trustAllCerts: Array<TrustManager> = arrayOf<TrustManager>(
                 object : X509TrustManager {
-                    override fun checkClientTrusted(p0: Array<out X509Certificate>?, p1: String?) {
-
-                    }
-
-                    override fun checkServerTrusted(p0: Array<out X509Certificate>?, p1: String?) {
-
-                    }
-
-                    override fun getAcceptedIssuers(): Array<X509Certificate> {
-                        return arrayOf()
-                    }
+                    override fun checkClientTrusted(p0: Array<out X509Certificate>?, p1: String?) { }
+                    override fun checkServerTrusted(p0: Array<out X509Certificate>?, p1: String?) { }
+                    override fun getAcceptedIssuers(): Array<X509Certificate> { return arrayOf() }
                 }
             )
-
             val sslContext: SSLContext = SSLContext.getInstance("SSL")
             sslContext.init(null, trustAllCerts, SecureRandom())
             val sslSocketFactory: SSLSocketFactory = sslContext.getSocketFactory()
@@ -54,7 +45,6 @@ object NetworkServices {
                 override fun verify(p0: String?, p1: SSLSession?): Boolean {
                     return true
                 }
-
             })
             builder
                 .addInterceptor(httpLoggingInterceptor)
@@ -62,10 +52,6 @@ object NetworkServices {
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
-        /*return OkHttpClient
-            .Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .build()*/
     }
 
     @Singleton
@@ -87,4 +73,8 @@ object NetworkServices {
     @Singleton
     @Provides
     fun provideGameService(retrofit: Retrofit): RemoteGameService = retrofit.create(RemoteGameService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideFollowersService(retrofit: Retrofit): RemoteFollowersService = retrofit.create(RemoteFollowersService::class.java)
 }
