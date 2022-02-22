@@ -7,14 +7,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FollowsuggestionsItemBinding
-import hr.fer.ruazosa.kviz2022.network.dto.GameUserDto
+import hr.fer.ruazosa.kviz2022.network.dto.*
 
-class FollowerClick(val block: (GameUserDto) -> Unit) {
-    fun onClick(follower: GameUserDto) = block(follower)
+class FollowerClick(val block: (GameUserDTO) -> Unit) {
+    fun onClick(follower: GameUserDTO) = block(follower)
 }
 
 class FollowerAdapter(val callback: FollowerClick) : RecyclerView.Adapter<FollowersViewHolder>() {
-    var followers: List<GameUserDto> = emptyList()
+    var followers: List<GameUserDTO> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

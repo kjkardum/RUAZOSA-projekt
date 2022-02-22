@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hr.fer.ruazosa.kviz2022.network.dto.FollowerDTO
-import hr.fer.ruazosa.kviz2022.network.dto.GameUserDto
+import hr.fer.ruazosa.kviz2022.network.dto.*
 import hr.fer.ruazosa.kviz2022.repository.interfaces.DemoDataRepository
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
@@ -20,8 +19,8 @@ class HomepageViewModel @Inject constructor(
     private val userRepository: UserRepository,
 ) : ViewModel() {
 
-    private val _suggestedFollowers = MutableLiveData<List<GameUserDto>>()
-    val suggestedFollowers: LiveData<List<GameUserDto>> get() = _suggestedFollowers
+    private val _suggestedFollowers = MutableLiveData<List<GameUserDTO>>()
+    val suggestedFollowers: LiveData<List<GameUserDTO>> get() = _suggestedFollowers
 
     private val _loggedInEmail = MutableLiveData<String>("")
     val loggedInEmail: LiveData<String> get() = _loggedInEmail
@@ -32,7 +31,7 @@ class HomepageViewModel @Inject constructor(
     init {
         getUser()
         _suggestedFollowers.value = listOf(
-            GameUserDto(
+            GameUserDTO(
                 id = 1,
                 userName = "Demo",
                 totalGamesPoints = 0,

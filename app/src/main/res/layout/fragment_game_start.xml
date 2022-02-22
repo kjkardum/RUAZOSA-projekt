@@ -10,14 +10,49 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".game.start.GameStartFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <FrameLayout
+            android:id="@+id/gameFrag"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/StartingView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:text="@string/start_game"
+                    android:textSize="50sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/invite_other_players"
+                    android:textSize="25sp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/FollowersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_margin="5dp"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/ic_next"
+                    android:onClick="@{() -> viewModelBinding.startGame()}"
+                    android:contentDescription="@string/invite_other_players" />
+
+            </LinearLayout>
+        </FrameLayout>
 
     </FrameLayout>
 </layout>

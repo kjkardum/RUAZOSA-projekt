@@ -6,7 +6,7 @@
     <data>
         <variable
             name="follower"
-            type="hr.fer.ruazosa.kviz2022.network.dto.GameUserDto" />
+            type="hr.fer.ruazosa.kviz2022.network.dto.GameUserDTO" />
         <variable
             name="followerClick"
             type="hr.fer.ruazosa.kviz2022.homepage.FollowerClick" />

@@ -24,4 +24,6 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="by_clicking_register_you_agree_to_tos">By clicking Register you agree to ToS</string>
     <string name="register">Register</string>
+    <string name="start_game">START GAME</string>
+    <string name="invite_other_players">INVITE OTHER PLAYERS</string>
 </resources>
