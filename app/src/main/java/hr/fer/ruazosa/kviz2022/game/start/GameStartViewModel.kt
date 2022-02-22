@@ -17,24 +17,27 @@ class GameStartViewModel @Inject constructor(
     private val followersRepository: FollowersRepository
 ) : ViewModel() {
 
-    private val _get = MutableLiveData<Boolean>()
-    val get: LiveData<Boolean> get() = _get
+    private val _selectedFollowers = MutableLiveData<List<GameUserDTO>>()
+    val selectedFollowers: LiveData<List<GameUserDTO>> get() = _selectedFollowers
 
-    private lateinit var _followers: List<GameUserDTO>
+    private val _followers = MutableLiveData<List<GameUserDTO>>()
+    val followers: LiveData<List<GameUserDTO>> get() = _followers
+
+    private val _startGame = MutableLiveData<Boolean>()
+    val startGame: LiveData<Boolean> get() = _startGame
 
     init {
-        _get.value = true
         getFollowers()
     }
 
     private fun getFollowers(){
         viewModelScope.launch {
-            _followers =  followersRepository.getFollowedUsers()
+            _followers.value =  followersRepository.getFollowedUsers()
         }
     }
 
     fun startGame(){
-
+        _startGame.value = true
     }
 
 }

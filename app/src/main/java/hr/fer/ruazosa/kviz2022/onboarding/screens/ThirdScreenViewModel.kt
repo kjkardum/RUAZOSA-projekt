@@ -19,14 +19,8 @@ class ThirdScreenViewModel @Inject constructor() : ViewModel(){
     fun prev(){
         _gotoPrev.value = true
     }
-    fun donePrev(){
-        _gotoPrev.value = false
-    }
 
     fun login(){
         _gotoLogin.value = true
-    }
-    fun doneLogin(){
-        _gotoLogin.value = false
     }
 }

@@ -2,7 +2,6 @@ package hr.fer.ruazosa.kviz2022.game.start
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import hr.fer.ruazosa.kviz2022.databinding.FollowersRowBinding
 

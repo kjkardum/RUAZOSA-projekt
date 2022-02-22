@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.OnboardingActivity
@@ -31,13 +34,18 @@ class GameStartFragment : Fragment() {
         ).apply {
             viewModelBinding = viewModel
         }
+
+        viewDataBinding.root.findViewById<RecyclerView>(R.id.FollowersRecyclerView).apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = viewModelGameStartAdapter
+        }
+
         viewDataBinding.lifecycleOwner = this
 
-        viewModel.get.observe(viewLifecycleOwner){
+        viewModel.startGame.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
-                    val recyclerview = activity?.findViewById<RecyclerView>(R.id.FollowersRecyclerView)
-
+                    findNavController().navigate(R.id.action_gameStartFragment2_to_gameQuestionFragment2)
                 }
             }
         }
