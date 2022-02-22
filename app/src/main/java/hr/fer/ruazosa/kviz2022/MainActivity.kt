@@ -7,12 +7,16 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.webkit.RenderProcessGoneDetail
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
@@ -45,7 +49,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener{
-            navController!!.navigate(R.id.action_homepageFragment_to_gameStartFragment2)
+            navController!!.navigate(R.id.gameStartFragment)
+        }
+
+        navController!!.addOnDestinationChangedListener { controller, destination, arguments ->
+            if (destination.id == R.id.gameStartFragment) {
+                binding.bottomAppBar.visibility = GONE
+                binding.fab.visibility = GONE
+            }
+            if (destination.id == R.id.homepageFragment || destination.id == R.id.leaderboardFragment) {
+                binding.bottomAppBar.visibility = VISIBLE
+                binding.fab.visibility = VISIBLE
+            }
         }
     }
 

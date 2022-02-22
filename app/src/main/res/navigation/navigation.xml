@@ -19,7 +19,11 @@
         android:id="@+id/leaderboardFragment"
         android:name="hr.fer.ruazosa.kviz2022.leaderboard.LeaderboardFragment"
         android:label="fragment_leaderboard"
-        tools:layout="@layout/fragment_leaderboard" />
+        tools:layout="@layout/fragment_leaderboard" >
+        <action
+            android:id="@+id/action_leaderboardFragment_to_gameStartFragment"
+            app:destination="@id/gameStartFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameStartFragment"
         android:name="hr.fer.ruazosa.kviz2022.game.start.GameStartFragment"
