@@ -1,5 +1,6 @@
 package hr.fer.ruazosa.kviz2022.network
 
+import hr.fer.ruazosa.kviz2022.network.dto.GameUserDTO
 import hr.fer.ruazosa.kviz2022.network.dto.UserDTO
 import hr.fer.ruazosa.kviz2022.network.dto.authentication.AuthenticationResponseDTO
 import hr.fer.ruazosa.kviz2022.network.dto.authentication.ResponseDTO
@@ -11,6 +12,9 @@ import retrofit2.http.POST
 import retrofit2.http.GET
 
 interface RemoteLoginService {
+    @GET("Account/getUser")
+    suspend fun getUser(): GameUserDTO
+
     @POST("Account/register")
     suspend fun registerNewAccount(@Body register: UserRegisterDTO): ResponseDTO<String>
 

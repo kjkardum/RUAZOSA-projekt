@@ -1,9 +1,6 @@
 package hr.fer.ruazosa.kviz2022.network
 
-import hr.fer.ruazosa.kviz2022.network.dto.game.GameDTO
-import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
-import hr.fer.ruazosa.kviz2022.network.dto.game.NewGameDTO
-import hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,6 +12,9 @@ interface RemoteGameService {
 
     @GET("Game/Leaderboard/{game_id}")
     suspend fun getGameLeaderboard(@Path(value = "game_id", encoded = true) gameId: Int): GameLeaderboardResponseDTO
+
+    @GET("Game/TotalLeaderboard")
+    suspend fun getTotalLeaderboard(): List<GameLeaderboardResponseItemDTO>
 
     @POST("Game/Start")
     suspend fun startNewGame(@Body newGameModel: NewGameDTO): GameDTO

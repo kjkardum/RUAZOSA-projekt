@@ -50,11 +50,11 @@ class HomepageFragment : Fragment() {
             homepageViewModel.followUser(it)
         })
         viewDataBinding.root.findViewById<RecyclerView>(R.id.followerRecyclerView).apply {
-            layoutManager = LinearLayoutManager(context);
-            adapter = viewModelFollowerAdapter;
+            layoutManager = LinearLayoutManager(context)
+            adapter = viewModelFollowerAdapter
         }
 
-        viewDataBinding.lifecycleOwner = this
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
         homepageViewModel.logoutAction.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {

@@ -26,7 +26,7 @@
             android:id="@+id/LeaderboardUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="{{USERNAME}}"
+            android:text="@{viewModel.user.userName}"
             android:layout_margin="5dp"
             android:textSize="20sp"
             />
@@ -36,8 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Current position is {{POSITION}}"
             android:textSize="20sp"
+            app:game_points="@{viewModel.user.totalGamesPoints}"
             />
 
         <View
@@ -49,6 +49,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/LeaderboardList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/leaderboard_row"/>
     </LinearLayout>
 </layout>

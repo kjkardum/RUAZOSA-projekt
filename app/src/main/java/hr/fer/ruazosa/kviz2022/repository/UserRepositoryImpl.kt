@@ -10,6 +10,7 @@ import hr.fer.ruazosa.kviz2022.network.dto.authentication.ResponseDTO
 import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserLoginDTO
 import hr.fer.ruazosa.kviz2022.network.dto.authentication.UserRegisterDTO
 import hr.fer.ruazosa.kviz2022.network.RemoteLoginService
+import hr.fer.ruazosa.kviz2022.network.dto.GameUserDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import java.util.*
 import javax.inject.Inject
@@ -59,6 +60,10 @@ class UserRepositoryImpl @Inject constructor(
             email = email,
             jwToken = token,
         )
+    }
+
+    override suspend fun getUserWithUsername(): GameUserDTO {
+        return remoteLoginService.getUser()
     }
 
     override fun logoutUser(): Boolean {

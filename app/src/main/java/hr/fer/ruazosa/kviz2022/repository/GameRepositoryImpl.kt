@@ -4,6 +4,7 @@ import hr.fer.ruazosa.kviz2022.network.dto.game.GameDTO
 import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
 import hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO
 import hr.fer.ruazosa.kviz2022.network.RemoteGameService
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseItemDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.GameRepository
 import javax.inject.Inject
 
@@ -28,5 +29,13 @@ class GameRepositoryImpl @Inject constructor(
 
     override suspend fun answerLastQuestion(gameId: Int, answer: String): Int {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getTotalLeaderboard(): List<GameLeaderboardResponseItemDTO> {
+        var items = remoteGameService.getTotalLeaderboard()
+        items.forEachIndexed { index, element ->
+            element.position = index + 1
+        }
+        return items;
     }
 }
