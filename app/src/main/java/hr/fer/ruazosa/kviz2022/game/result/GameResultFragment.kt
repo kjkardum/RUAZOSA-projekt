@@ -17,6 +17,22 @@ class GameResultFragment : Fragment() {
     private val viewModel by viewModels<GameResultViewModel>()
 
     private lateinit var viewDataBinding: FragmentGameResultBinding
+
+    private var viewModelGameResultAdapter: GameResultAdapter? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.results.observe(viewLifecycleOwner){
+            it?.apply {
+                viewModelGameResultAdapter?.results = this.leaderboard
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +44,7 @@ class GameResultFragment : Fragment() {
             viewModelBinding = viewModel
         }
         viewDataBinding.lifecycleOwner = this
+
 
         return viewDataBinding.root
     }

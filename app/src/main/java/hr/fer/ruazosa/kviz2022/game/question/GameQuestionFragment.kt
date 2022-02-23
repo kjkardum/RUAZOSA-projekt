@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import hr.fer.ruazosa.kviz2022.R
 import hr.fer.ruazosa.kviz2022.databinding.FragmentGameQuestionBinding
@@ -17,6 +19,7 @@ class GameQuestionFragment : Fragment() {
     private val viewModel by viewModels<GameQuestionViewModel>()
 
     private lateinit var viewDataBinding: FragmentGameQuestionBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +31,22 @@ class GameQuestionFragment : Fragment() {
             viewModelBinding = viewModel
         }
         viewDataBinding.lifecycleOwner = this
+
+        viewModel.answerValid.observe(viewLifecycleOwner){
+            it?.let {
+                if (it) {
+                    Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.answerInvalid.observe(viewLifecycleOwner){
+            it?.let {
+                if (it) {
+                    Toast.makeText(context, "Incorrect", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         return viewDataBinding.root
     }

@@ -22,27 +22,23 @@
                 android:id="@+id/FinalState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="{{STATE}}"
+                android:text=""
+                tools:text="Demo State"
                 android:textSize="50sp"/>
-
-            <TextView
-                android:id="@+id/FinalPosition"
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="{{Current position}}"/>
 
             <ListView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="250dp"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_next"
-                android:onClick="endGame"/>
+                android:onClick="@{}"
+                android:text="@string/play"
+                android:layout_gravity="right"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="20dp"/>
 
         </LinearLayout>
 

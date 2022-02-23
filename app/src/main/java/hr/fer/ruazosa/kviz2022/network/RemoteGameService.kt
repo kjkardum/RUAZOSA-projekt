@@ -17,7 +17,7 @@ interface RemoteGameService {
     suspend fun getTotalLeaderboard(): List<GameLeaderboardResponseItemDTO>
 
     @POST("Game/Start")
-    suspend fun startNewGame(@Body newGameModel: NewGameDTO): GameDTO
+    suspend fun startNewGame(@Body newGameModel: NewGameDTO): Boolean
 
     @GET("Game/NextQuestion/{game_id}")
     suspend fun getNextQuestion(@Path(value = "game_id", encoded = true) gameId: Int): QuestionDTO

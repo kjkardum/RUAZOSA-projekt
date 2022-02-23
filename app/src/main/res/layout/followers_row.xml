@@ -17,18 +17,26 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20sp">
+        android:padding="5dp">
 
-        <CheckBox
-            android:onClick="@{() -> followerClick.onClick(follower)}"
-            android:id="@+id/Follower"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Demo User"
             android:text="@{follower.userName}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Demo User"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> followerClick.onClick(follower)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/invite"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

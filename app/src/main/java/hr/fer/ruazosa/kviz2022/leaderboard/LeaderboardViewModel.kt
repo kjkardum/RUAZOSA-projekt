@@ -42,7 +42,7 @@ class LeaderboardViewModel @Inject constructor(
         }
     }
 
-    fun getLeaderboard() {
+    private fun getLeaderboard() {
         viewModelScope.launch {
             _leaderboardItems.value = gameRepository.getTotalLeaderboard()
         }

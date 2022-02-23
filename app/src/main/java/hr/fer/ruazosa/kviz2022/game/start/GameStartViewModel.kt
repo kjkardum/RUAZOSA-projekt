@@ -6,15 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hr.fer.ruazosa.kviz2022.network.dto.GameUserDTO
+import hr.fer.ruazosa.kviz2022.network.dto.UserDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.FollowersRepository
 import hr.fer.ruazosa.kviz2022.repository.interfaces.GameRepository
+import hr.fer.ruazosa.kviz2022.repository.interfaces.UserRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class GameStartViewModel @Inject constructor(
-    private val gameRepository: GameRepository,
-    private val followersRepository: FollowersRepository
+    private var gameRepository: GameRepository,
+    private var followersRepository: FollowersRepository,
+    private var userRepository: UserRepository
 ) : ViewModel() {
 
     private val _selectedFollowers = MutableLiveData<List<GameUserDTO>>()
@@ -26,6 +29,8 @@ class GameStartViewModel @Inject constructor(
     private val _startGame = MutableLiveData<Boolean>()
     val startGame: LiveData<Boolean> get() = _startGame
 
+    private var addedFollowers: MutableList<Int>? = null
+
     init {
         getFollowers()
     }
@@ -36,8 +41,28 @@ class GameStartViewModel @Inject constructor(
         }
     }
 
+    fun addFollowerToList(user: GameUserDTO){
+        viewModelScope.launch {
+            addedFollowers?.add(user.id)
+        }
+    }
+
+    fun removeFollowerFromList(user: GameUserDTO){
+        viewModelScope.launch {
+            addedFollowers?.remove(user.id)
+        }
+    }
+
+    fun isFollowerOnList(user: GameUserDTO): Boolean?{
+        return addedFollowers?.contains(user.id)
+    }
+
     fun startGame(){
-        _startGame.value = true
+        viewModelScope.launch {
+            addedFollowers?.add(userRepository.getUserWithUsername().id)
+            addedFollowers?.let { gameRepository.startNewGame(it.toList()) }
+            _startGame.value = true
+        }
     }
 
 }
