@@ -24,12 +24,17 @@ class GameResultViewModel @Inject constructor(
 
     init {
         getScoreBoard()
+        endStatus()
     }
 
     private fun getScoreBoard(){
         viewModelScope.launch {
-            _results.value = gameRepository.getGameLeaderboard(1)
+            _results.value = gameRepository.getGameLeaderboard(gameRepository.getLastStartedGameId())
         }
+    }
+
+    private fun endStatus(){
+
     }
 
     fun endGame(){

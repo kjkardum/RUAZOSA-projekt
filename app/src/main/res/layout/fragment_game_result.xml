@@ -26,16 +26,17 @@
                 tools:text="Demo State"
                 android:textSize="50sp"/>
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/GameResultRecyclerView"
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{}"
-                android:text="@string/play"
+                android:onClick="@{() -> viewModelBinding.endGame()}"
+                android:text="@string/end"
                 android:layout_gravity="right"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="20dp"/>

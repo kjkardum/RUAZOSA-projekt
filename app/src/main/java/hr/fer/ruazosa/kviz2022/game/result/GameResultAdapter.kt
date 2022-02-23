@@ -34,5 +34,4 @@ class GameResultAdapter: RecyclerView.Adapter<GameResultAdapter.GameResultHolder
 
     override fun getItemCount(): Int = results.count()
 
-
 }

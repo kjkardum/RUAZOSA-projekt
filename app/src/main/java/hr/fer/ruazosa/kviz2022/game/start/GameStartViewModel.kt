@@ -41,19 +41,19 @@ class GameStartViewModel @Inject constructor(
         }
     }
 
-    fun addFollowerToList(user: GameUserDTO){
+    private fun addFollowerToList(user: GameUserDTO){
         viewModelScope.launch {
             addedFollowers?.add(user.id)
         }
     }
 
-    fun removeFollowerFromList(user: GameUserDTO){
+    private fun removeFollowerFromList(user: GameUserDTO){
         viewModelScope.launch {
             addedFollowers?.remove(user.id)
         }
     }
 
-    fun isFollowerOnList(user: GameUserDTO): Boolean?{
+    private fun isFollowerOnList(user: GameUserDTO): Boolean?{
         return addedFollowers?.contains(user.id)
     }
 

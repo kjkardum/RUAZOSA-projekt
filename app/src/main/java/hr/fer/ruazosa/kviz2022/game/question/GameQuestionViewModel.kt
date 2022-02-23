@@ -36,7 +36,7 @@ class GameQuestionViewModel @Inject constructor(
 
     fun answerQuestion(){
         viewModelScope.launch {
-            val answerStatus = gameRepository.answerLastQuestion(1, answer.value?:"")
+            val answerStatus = gameRepository.answerLastQuestion(gameRepository.getLastStartedGameId(), answer.value?:"")
             if (answerStatus == 0){
                 _answerInvalid.value = true
             } else {
@@ -48,7 +48,7 @@ class GameQuestionViewModel @Inject constructor(
 
     private fun getQuestion(){
         viewModelScope.launch {
-            question.value = gameRepository.getNextQuestion(1)
+            question.value = gameRepository.getNextQuestion(gameRepository.getLastStartedGameId())
             Timber.d("question fetched!")
         }
     }
