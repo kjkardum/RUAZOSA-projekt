@@ -9,6 +9,7 @@ interface GameRepository {
     suspend fun getActiveGames(): List<GameDTO>
     suspend fun getGameLeaderboard(gameId: Int): GameLeaderboardResponseDTO
     suspend fun startNewGame(userIds: List<Int>): Int
+    fun getLastStartedGameId(): Int
     suspend fun getNextQuestion(gameId: Int): QuestionDTO
     suspend fun answerLastQuestion(gameId: Int, answer: String): Int
     suspend fun getTotalLeaderboard(): List<GameLeaderboardResponseItemDTO>
