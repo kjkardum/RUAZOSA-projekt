@@ -52,7 +52,10 @@ class UserRepositoryImpl @Inject constructor(
         if (token.isNullOrEmpty()) return null
         val jwt = JWT(token)
         val expiresAt = jwt.expiresAt ?: return null
-        if (expiresAt < Date()) return null
+        if (expiresAt < Date()) {
+            logoutUser(dontCheckAuthenticated = true);
+            return null;
+        }
         val userId = jwt.getClaim("uid").asInt() ?: return null
         val email = jwt.getClaim("email").asString() ?: return null
         return UserDTO(
@@ -66,8 +69,8 @@ class UserRepositoryImpl @Inject constructor(
         return remoteLoginService.getUser()
     }
 
-    override fun logoutUser(): Boolean {
-        if (!isAuthenticated()) return false
+    override fun logoutUser(dontCheckAuthenticated: Boolean): Boolean {
+        if (!dontCheckAuthenticated && !isAuthenticated()) return false
         PreferenceManager
             .getDefaultSharedPreferences(context)
             .edit()

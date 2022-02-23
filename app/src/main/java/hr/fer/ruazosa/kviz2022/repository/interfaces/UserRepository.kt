@@ -12,5 +12,5 @@ interface UserRepository {
     suspend fun registerAsync(model: UserRegisterDTO): ResponseDTO<String>
     fun isAuthenticated(): Boolean
     fun getUser(): UserDTO?
-    fun logoutUser(): Boolean
+    fun logoutUser(dontCheckAuthenticated: Boolean = false): Boolean
 }
