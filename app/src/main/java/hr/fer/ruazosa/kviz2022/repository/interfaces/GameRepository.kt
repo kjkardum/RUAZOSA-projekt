@@ -8,7 +8,7 @@ import hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO
 interface GameRepository {
     suspend fun getActiveGames(): List<GameDTO>
     suspend fun getGameLeaderboard(gameId: Int): GameLeaderboardResponseDTO
-    suspend fun startNewGame(userIds: List<Int>): Boolean
+    suspend fun startNewGame(userIds: List<Int>): Int
     suspend fun getNextQuestion(gameId: Int): QuestionDTO
     suspend fun answerLastQuestion(gameId: Int, answer: String): Int
     suspend fun getTotalLeaderboard(): List<GameLeaderboardResponseItemDTO>
