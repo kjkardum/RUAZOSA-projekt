@@ -29,10 +29,6 @@ class GameStartFragment : Fragment() {
 
     private var viewModelGameStartAdapter: GameStartAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.followers.observe(viewLifecycleOwner){
@@ -53,11 +49,7 @@ class GameStartFragment : Fragment() {
         }
 
         viewModelGameStartAdapter = GameStartAdapter(FollowerClick {
-            if (viewModel.isFollowerOnList(it) == false){
-                viewModel.addFollowerToList(it)
-            } else {
-                viewModel.removeFollowerFromList(it)
-            }
+            viewModel.tryToAddOnList(it)
         })
 
         viewDataBinding.root.findViewById<RecyclerView>(R.id.FollowersRecyclerView).apply {
