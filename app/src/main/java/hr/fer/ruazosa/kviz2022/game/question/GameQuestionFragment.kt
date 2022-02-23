@@ -39,12 +39,17 @@ class GameQuestionFragment : Fragment() {
                 }
             }
         }
-
         viewModel.answerInvalid.observe(viewLifecycleOwner){
             it?.let {
                 if (it) {
                     Toast.makeText(context, "Incorrect", Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+        viewModel.finishGame.observe(viewLifecycleOwner) {
+            if (it == true) {
+                Toast.makeText(context, "Game finished", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_gameQuestionFragment2_to_gameResultFragment2)
             }
         }
 

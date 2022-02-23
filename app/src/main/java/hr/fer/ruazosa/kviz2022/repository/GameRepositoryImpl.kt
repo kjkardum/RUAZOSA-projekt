@@ -6,6 +6,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import hr.fer.ruazosa.kviz2022.network.RemoteGameService
 import hr.fer.ruazosa.kviz2022.network.dto.game.*
 import hr.fer.ruazosa.kviz2022.repository.interfaces.GameRepository
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class GameRepositoryImpl @Inject constructor(
@@ -37,8 +38,12 @@ class GameRepositoryImpl @Inject constructor(
             .getInt(LAST_GAME_ID, 0)
     }
 
-    override suspend fun getNextQuestion(gameId: Int): QuestionDTO {
-        return remoteGameService.getNextQuestion(gameId)
+    override suspend fun getNextQuestion(gameId: Int): QuestionDTO? {
+        return try {
+            remoteGameService.getNextQuestion(gameId)
+        } catch (exception: HttpException) {
+            null
+        }
     }
 
     override suspend fun answerLastQuestion(gameId: Int, answer: String): Int {
