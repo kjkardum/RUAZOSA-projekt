@@ -29,7 +29,7 @@ class GameStartViewModel @Inject constructor(
     private val _startGame = MutableLiveData<Boolean>()
     val startGame: LiveData<Boolean> get() = _startGame
 
-    private var addedFollowers: MutableList<Int>? = null
+    private var addedFollowers: MutableList<Int>? = mutableListOf()
 
     init {
         getFollowers()
@@ -60,8 +60,10 @@ class GameStartViewModel @Inject constructor(
     fun startGame(){
         viewModelScope.launch {
             addedFollowers?.add(userRepository.getUserWithUsername().id)
-            addedFollowers?.let { gameRepository.startNewGame(it.toList()) }
-            _startGame.value = true
+            addedFollowers?.let {
+                gameRepository.startNewGame(it.toList())
+                _startGame.value = true
+            }
         }
     }
 
