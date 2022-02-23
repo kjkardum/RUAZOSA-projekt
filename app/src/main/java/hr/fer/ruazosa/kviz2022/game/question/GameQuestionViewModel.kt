@@ -22,7 +22,8 @@ class GameQuestionViewModel @Inject constructor(
 
     val answer = MutableLiveData<String>()
 
-    private val question = MutableLiveData<QuestionDTO>()
+    private val _question = MutableLiveData<QuestionDTO>()
+    val question: LiveData<QuestionDTO> get() = _question
 
     private val _answerValid = MutableLiveData<Boolean>()
     val answerValid: LiveData<Boolean> get() = _answerValid
@@ -48,7 +49,7 @@ class GameQuestionViewModel @Inject constructor(
 
     private fun getQuestion(){
         viewModelScope.launch {
-            question.value = gameRepository.getNextQuestion(gameRepository.getLastStartedGameId())
+            _question.value = gameRepository.getNextQuestion(gameRepository.getLastStartedGameId())
             Timber.d("question fetched!")
         }
     }

@@ -6,9 +6,6 @@
         <variable
             name="viewModelBinding"
             type="hr.fer.ruazosa.kviz2022.game.question.GameQuestionViewModel" />
-        <variable
-            name="questionBinding"
-            type="hr.fer.ruazosa.kviz2022.network.dto.game.QuestionDTO" />
     </data>
 
     <LinearLayout
@@ -21,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Demo Question"
-            android:text="@{questionBinding.questionText}"
-            android:textSize="50sp" />
+            android:text="@{viewModelBinding.question.questionText}"
+            android:textSize="35sp" />
 
         <TextView
             android:id="@+id/CountdownTimer"
