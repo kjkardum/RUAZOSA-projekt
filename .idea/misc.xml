@@ -34,7 +34,7 @@
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/layout/fragment_game_end.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/layout/fragment_game_question.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_game_result.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_game_result.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_game_start.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/fragment_homepage.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_howtoplay.xml" value="0.33" />
@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/layout/leaderboard_row.xml" value="0.33133817870884996" />
+        <entry key="app/src/main/res/layout/scoreboard_row.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/menu/bottom_app_bar.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/bottom_navigation_item.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1791363830696879" />

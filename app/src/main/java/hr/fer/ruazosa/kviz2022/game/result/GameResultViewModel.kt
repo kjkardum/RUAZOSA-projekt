@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hr.fer.ruazosa.kviz2022.network.dto.GameUserDTO
 import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
+import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseItemDTO
 import hr.fer.ruazosa.kviz2022.repository.interfaces.GameRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,22 +21,17 @@ class GameResultViewModel @Inject constructor(
     private val _gameEnd = MutableLiveData<Boolean>()
     val gameEnd: LiveData<Boolean> get() = _gameEnd
 
-    private val _results = MutableLiveData<GameLeaderboardResponseDTO>()
-    val results: LiveData<GameLeaderboardResponseDTO> get() = _results
+    private val _results = MutableLiveData<List<GameLeaderboardResponseItemDTO>>()
+    val results: LiveData<List<GameLeaderboardResponseItemDTO>> get() = _results
 
     init {
         getScoreBoard()
-        endStatus()
     }
 
     private fun getScoreBoard(){
         viewModelScope.launch {
-            _results.value = gameRepository.getGameLeaderboard(gameRepository.getLastStartedGameId())
+            _results.value = gameRepository.getGameLeaderboard(gameRepository.getLastStartedGameId()).leaderboard
         }
-    }
-
-    private fun endStatus(){
-
     }
 
     fun endGame(){

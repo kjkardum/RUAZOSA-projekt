@@ -22,8 +22,8 @@
                 android:id="@+id/FinalState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
                 tools:text="Demo State"
+                android:text="@string/final_scoreboard"
                 android:textSize="50sp"/>
 
             <androidx.recyclerview.widget.RecyclerView

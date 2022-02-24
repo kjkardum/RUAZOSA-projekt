@@ -2,14 +2,17 @@ package hr.fer.ruazosa.kviz2022.game.result
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import hr.fer.ruazosa.kviz2022.databinding.LeaderboardRowBinding
+import hr.fer.ruazosa.kviz2022.databinding.ScoreboardRowBinding
 import hr.fer.ruazosa.kviz2022.game.start.GameStartAdapter
 import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseDTO
 import hr.fer.ruazosa.kviz2022.network.dto.game.GameLeaderboardResponseItemDTO
 
 class GameResultAdapter: RecyclerView.Adapter<GameResultAdapter.GameResultHolder>() {
-    class GameResultHolder(val binding: LeaderboardRowBinding):
+    class GameResultHolder(val binding: ScoreboardRowBinding):
             RecyclerView.ViewHolder(binding.root){}
 
     var results: List<GameLeaderboardResponseItemDTO> = emptyList()
@@ -19,7 +22,7 @@ class GameResultAdapter: RecyclerView.Adapter<GameResultAdapter.GameResultHolder
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameResultHolder {
-        val withDataBinding = LeaderboardRowBinding.inflate(
+        val withDataBinding = ScoreboardRowBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
@@ -33,5 +36,4 @@ class GameResultAdapter: RecyclerView.Adapter<GameResultAdapter.GameResultHolder
     }
 
     override fun getItemCount(): Int = results.count()
-
 }

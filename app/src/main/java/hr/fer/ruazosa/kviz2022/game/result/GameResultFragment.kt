@@ -27,7 +27,7 @@ class GameResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.results.observe(viewLifecycleOwner){
             it?.apply {
-                viewModelGameResultAdapter?.results = this.leaderboard
+                viewModelGameResultAdapter?.results = this
             }
         }
     }
@@ -36,7 +36,6 @@ class GameResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
         viewDataBinding = FragmentGameResultBinding.inflate(
             inflater, container, false
         ).apply {
