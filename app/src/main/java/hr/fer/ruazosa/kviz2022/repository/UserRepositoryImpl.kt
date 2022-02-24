@@ -1,8 +1,10 @@
 package hr.fer.ruazosa.kviz2022.repository
 
 import android.content.Context
+import android.widget.Toast
 import androidx.preference.PreferenceManager
 import com.auth0.android.jwt.JWT
+import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import hr.fer.ruazosa.kviz2022.network.dto.UserDTO
 import hr.fer.ruazosa.kviz2022.network.dto.authentication.AuthenticationResponseDTO
@@ -37,7 +39,21 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun registerAsync(model: UserRegisterDTO): ResponseDTO<String> {
         logoutUser()
-        return remoteLoginService.registerNewAccount(model)
+        var response: ResponseDTO<String>
+        try{
+            response = remoteLoginService.registerNewAccount(model)}
+        catch (e: retrofit2.HttpException){
+            var responseJSONString = e.response()?.errorBody()?.string()
+            data class ResponseDataClass(val type: String, val title: String, val status: Int, val traceId: String, val errors: Map<String, List<String>>)
+            val responseJSONObject = Gson().fromJson<ResponseDataClass>(responseJSONString, ResponseDataClass::class.java)
+            val errorsList = mutableListOf<String>()
+            for(i in responseJSONObject.errors.values){
+                errorsList.addAll(i)
+            }
+            Toast.makeText(context, errorsList.get(0), Toast.LENGTH_SHORT).show()
+            response = ResponseDTO<String>("", false, responseJSONObject.title, errorsList)
+        }
+        return response
     }
 
     override fun isAuthenticated(): Boolean {

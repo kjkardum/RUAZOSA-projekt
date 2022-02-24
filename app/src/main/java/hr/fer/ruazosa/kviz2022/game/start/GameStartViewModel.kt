@@ -75,4 +75,12 @@ class GameStartViewModel @Inject constructor(
         }
     }
 
+    fun tryToAddOnList(user: GameUserDTO){
+        if (isFollowerOnList(user) == false){
+            addFollowerToList(user)
+        } else {
+            removeFollowerFromList(user)
+        }
+    }
+
 }
