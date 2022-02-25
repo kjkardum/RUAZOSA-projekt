@@ -32,4 +32,6 @@
     <string name="your_answer">Your answer</string>
     <string name="end">End</string>
     <string name="final_scoreboard">Final Scoreboard</string>
+    <string name="continue_started_games">Continue started games</string>
+    <string name="follow_recommendations">Follow recommendations</string>
 </resources>

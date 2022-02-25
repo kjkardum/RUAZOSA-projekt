@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".homepage.HomepageFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
@@ -71,7 +70,7 @@
                         android:id="@+id/textFollowerRecommendationsTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Follow recommendations" />
+                        android:text="@string/follow_recommendations" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/followerRecyclerView"
@@ -94,10 +93,11 @@
                         android:id="@+id/textStartedGames"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Continue started games"
+                        android:text="@string/continue_started_games"
                         android:textColor="@color/md_theme_dark_onTertiary" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/ContinueStartedGamesRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                 </LinearLayout>

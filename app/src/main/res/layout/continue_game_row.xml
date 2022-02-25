@@ -5,12 +5,12 @@
 
     <data>
         <variable
-            name="follower"
-            type="hr.fer.ruazosa.kviz2022.network.dto.GameUserDTO" />
+            name="game"
+            type="hr.fer.ruazosa.kviz2022.network.dto.game.GameDTO" />
 
         <variable
-            name="followerClick"
-            type="hr.fer.ruazosa.kviz2022.game.start.FollowerClick" />
+            name="gameClick"
+            type="hr.fer.ruazosa.kviz2022.homepage.GameClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,22 +21,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{follower.userName}"
+            android:text="@{game.id}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Demo User"/>
+            tools:text="Demo Game"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> followerClick.onClick(follower)}"
+            android:onClick="@{() -> gameClick.onClick(game)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/invite"/>
-
-
+            android:text="Continue"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

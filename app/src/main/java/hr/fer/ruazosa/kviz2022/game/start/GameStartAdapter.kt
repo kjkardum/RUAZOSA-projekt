@@ -43,5 +43,6 @@ class GameStartAdapter(val callback: FollowerClick):
     }
 
     override fun getItemCount(): Int = followers.count()
+
 }
 
