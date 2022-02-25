@@ -2,6 +2,8 @@ package hr.fer.ruazosa.kviz2022.network
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -95,7 +97,7 @@ object NetworkServices {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("yyyy-MM-dd'T'hh:mm:ss").create()))
         .client(okHttpClient)
         .build()
 

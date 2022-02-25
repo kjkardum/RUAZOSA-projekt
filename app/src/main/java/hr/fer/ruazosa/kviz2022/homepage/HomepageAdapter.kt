@@ -2,7 +2,9 @@ package hr.fer.ruazosa.kviz2022.homepage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import hr.fer.ruazosa.kviz2022.R
@@ -76,4 +78,9 @@ class FollowerAdapter(val callback: FollowerClick) :
         }
     }
     override fun getItemCount() = followers.size
+}
+
+@BindingAdapter("game")
+fun setGame(view: TextView, data: GameDTO){
+    view.text = "Game #${data.id}\nstarted: ${data.startTime.toLocaleString()}"
 }

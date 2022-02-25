@@ -45,8 +45,8 @@ class HomepageViewModel @Inject constructor(
         getUser()
         if (!_loggedInEmail.value.isNullOrEmpty()) {
             getSuggestedFollowers()
+            continueStartedGames()
         }
-        //continueStartedGames()
     }
 
     private fun continueStartedGames(){
